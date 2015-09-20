@@ -1,0 +1,36 @@
+{
+    "common": {
+        "name":                     "vis-jqui-mfd",
+        "version": "0.0.1",
+        "title":                    "ioBroker Visualisation - jQuery-UI style Widgets",
+        "desc": {
+            "en":                   "jQuery-UI Widgets for ioBroker.vis with OpenAutomationProject icons",
+            "de":                   "jQuery-UI Widgets für ioBroker.vis mit OpenAutomationProject Bilder",
+            "ru":                   "jQuery-UI Widgets для ioBroker.vis с иконками OpenAutomationProject"
+        },
+        "platform":                 "Javascript/Node.js",
+        "loglevel":                 "info",
+        "icon":                     "jqui-mfd.png",
+        "enabled":                  true,
+        "mode":                     "once",
+        "extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.vis-jqui-mfd/master/admin/jqui-mfd.png",
+        "keywords":                 ["jqui-mfd", "vis", "GUI", "graphical", "scada"],
+        "readme":                   "https://github.com/ioBroker/ioBroker.vis-jqui-mfd/blob/master/README.md",
+        "authors": [
+            "hobbyquaker <hq@ccu.io>",
+			"bluefox <dogafox@gmail.com>"
+        ],
+        "localLink":                "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+        "license":                  "MIT",
+        "dependencies":             ["vis"],
+        "onlyWWW":                  true,
+        "singleton":                true,
+        "type":                     "vis",
+		"restartAdapters":          ["vis"]
+    },
+    "native": {
+        "dependencies":          ["basic", "jqui"]
+    },
+    "instanceObjects": [
+    ]
+}
