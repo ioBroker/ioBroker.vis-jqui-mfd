@@ -3,7 +3,7 @@ ioBroker.vis-jqui-mfd
 ============
 
 jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI interface with icons from [OpenAutomationProject](https://github.com/OpenAutomationProject/knx-uf-iconset).
-![Demo2.png](Screenshot)
+![Screenshot](img/Demo2.png)
 
 ## Changelog
 
