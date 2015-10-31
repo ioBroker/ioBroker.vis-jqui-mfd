@@ -1,7 +1,7 @@
 {
     "common": {
         "name":                     "vis-jqui-mfd",
-        "version": "0.0.1",
+        "version": "0.1.0",
         "title":                    "ioBroker Visualisation - jQuery-UI style Widgets",
         "desc": {
             "en":                   "jQuery-UI Widgets for ioBroker.vis with OpenAutomationProject icons",

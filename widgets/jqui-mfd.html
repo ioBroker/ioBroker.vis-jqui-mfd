@@ -56,7 +56,10 @@
             "icon7":        {"en": "Icon 70%",              "de": "Bild bei 70%",           "ru": "Картинка 70%"},
             "icon8":        {"en": "Icon 80%",              "de": "Bild bei 80%",           "ru": "Картинка 80%"},
             "icon9":        {"en": "Icon 90%",              "de": "Bild bei 90%",           "ru": "Картинка 90%"},
-            "icon10":       {"en": "Icon 100%",             "de": "Bild bei 100%",          "ru": "Картинка 100%"}
+            "icon10":       {"en": "Icon 100%",             "de": "Bild bei 100%",          "ru": "Картинка 100%"},
+            "iconOff":      {"en": "Inactive Icon",         "de": "Inaktivbild",            "ru": "Неактиваня картинка"},
+            "textOff":      {"en": "Text for Off",          "de": "Text für Aus",           "ru": "Надпись для Выкл"},
+            "textOn":       {"en": "Text for On",           "de": "Text für Ein",           "ru": "Надпись для Вкл"}
         });
     }
 
@@ -204,9 +207,10 @@
         data-vis-set="jqui-mfd"
         data-vis-prev='<img src="widgets/jqui-mfd/img/Prev_Light_jquiDialog.png"></img>'
         data-vis-type="light;ctrl;dialog"
-        data-vis-name="Light + jqui Dialog"
-        data-vis-attrs="oid;oid-working;min;max;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;"
-        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/checkbox;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
+        data-vis-name="OnOff + jqui Dialog"
+        data-vis-attrs="oid;oid-working;min;max;"
+        data-vis-attrs0="group.style;iconOff/image;iconOn/image;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;"
+        data-vis-attrs1="group.dialog;textOff;textOn;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
         >
     <div data-oid="<%= this.data.attr('oid') %>" data-hm-wid="<%= this.data.attr('oid-working') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:76px; height:76px; position:absolute" <%= (el) -> this.data.attr('asButton') ? vis.binds.jqueryui.classes(el) : '' %>>
         <div id="<%= this.data.attr('wid') %>_body" class="vis-widget-body" style="width:100%; height:100%" <%= (el) -> vis.preloadImages(['widgets/jqui-mfd/img/light_light_dim_100.png','widgets/jqui-mfd/img/light_light_dim_90.png','widgets/jqui-mfd/img/light_light_dim_80.png','widgets/jqui-mfd/img/light_light_dim_70.png','widgets/jqui-mfd/img/light_light_dim_60.png','widgets/jqui-mfd/img/light_light_dim_50.png','widgets/jqui-mfd/img/light_light_dim_40.png','widgets/jqui-mfd/img/light_light_dim_30.png','widgets/jqui-mfd/img/light_light_dim_20.png','widgets/jqui-mfd/img/light_light_dim_10.png','widgets/jqui-mfd/img/light_light_dim.png']); %>>
@@ -215,55 +219,24 @@
             if (this.data.invert_icon === "true" || this.data.invert_icon === true) {
                 styles = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
             }
-
-            var max = (this.data.attr('max') !== undefined) ? this.data.attr('max') : 100;
-            var min = (this.data.attr('min') !== undefined) ? this.data.attr('min') : 0;
-
-            if (typeof max == 'string' && parseFloat(max).toString() == max) max = parseFloat(max);
-            if (typeof min == 'string' && parseFloat(min).toString() == min) min = parseFloat(min);
-
-            var str = vis.states.attr(this.data.oid + '.val');
-            var val = parseFloat(str);
-            if (str === true  || str === 'true')  { val = max; }
-            if (str === false || str === 'false') { val = min; }
-
+            var isFalse = vis.binds.basic.isFalse(vis.states.attr(this.data.oid + '.val'), this.data.attr('min'), this.data.attr('max'));
             var image = '';
-            if (val >= max) {
-                image="light_light_dim_100";
-            } else if (val >= min + (max - min) * 0.9) {
-                image = "light_light_dim_90";
-            } else if (val >= min + (max - min) * 0.8) {
-               image = "light_light_dim_80";
-            } else if (val >= min + (max - min) * 0.7) {
-               image = "light_light_dim_70";
-            } else if (val >= min + (max - min) * 0.6) {
-               image = "light_light_dim_60";
-            } else if (val >= min + (max - min) * 0.5) {
-               image = "light_light_dim_50";
-            } else if (val >= min + (max - min) * 0.4) {
-               image = "light_light_dim_40";
-            } else if (val >= min + (max - min) * 0.3) {
-               image = "light_light_dim_30";
-            } else if (val >= min + (max - min) * 0.2) {
-               image = "light_light_dim_20";
-            } else if (val >= min + (max - min) * 0.1) {
-               image = "light_light_dim_10";
-            } else if (val >= min + (max - min) * 0.01) {
-               image = "light_light_dim_00";
+            if (!isFalse) {
+                image = this.data.attr('iconOn')  || "widgets/jqui-mfd/img/light_light_dim_100.svg";
             } else {
-               image = "light_light_dim";
+                image = this.data.attr('iconOff') || "widgets/jqui-mfd/img/light_light_dim_00.svg";
             }
 
             if (this.data.attr('iconColor')) {
             %>
-                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
             <%
                } else {
             %>
-                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png"/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>"/>
             <% } %>
         </div>
-        <div id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.title || this.data.attr('oid') %>" style="padding-left:20px;">
+        <div id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.title || this.data.attr('oid') %>">
             <div id="<%= this.data.attr('wid') %>_radio"  class="<%= this.data.attr('wid') %>_radio" style="text-align: center" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.jqueryui.radio(el); %> >
                 <%
                     var max = (this.data.attr('max') !== undefined) ? this.data.attr('max') : 100;
@@ -276,12 +249,12 @@
                     if (min === 'true')  min = true;
                     if (min === 'false') min = false;
                 %>
-                <input type="radio" id="<%= this.data.attr('wid') %>_radio0" name="<%= this.data.attr('wid') %>_radio" value="<%= min %>" checked="checked"/><label for="<%= this.data.attr('wid') %>_radio0"><% _('off') %> <%= _('off') %></label>
-                <input type="radio" id="<%= this.data.attr('wid') %>_radio4" name="<%= this.data.attr('wid') %>_radio" value="<%= max %>"/><label for="<%= this.data.attr('wid') %>_radio4"><%= _('on') %></label>
+                <input type="radio" id="<%= this.data.attr('wid') %>_radioOff" name="<%= this.data.attr('wid') %>_radio" value="<%= min %>" checked="checked"/><label for="<%= this.data.attr('wid') %>_radioOff"><%= this.data.attr('textOff') || _('off') %></label>
+                <input type="radio" id="<%= this.data.attr('wid') %>_radioOn"  name="<%= this.data.attr('wid') %>_radio" value="<%= max %>"/><label for="<%= this.data.attr('wid') %>_radioOn"><%= this.data.attr('textOn') || _('on') %></label>
             </div>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, this.data, true) %> />
-        <div class="popup-helper" <%= (el) -> if (data.attr("autoclose") === 'true' || data.attr("autoclose") === true) { vis.binds.jqueryui.dialogAutoClose(el) } %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr("autoclose")) %> />
     </div>
 </script>
 
@@ -293,7 +266,7 @@
         data-vis-prev='<img src="widgets/jqui-mfd/img/Prev_Dimmer_jquiDialog.png"></img>'
         data-vis-name="Dimmer + jqui Dialog"
         data-vis-attrs="oid;oid-working;min;max;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;"
-        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/checkbox;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;">
+        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;">
     <div data-oid="<%= this.data.attr('oid') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:76px; height:76px; position:absolute" <%= (el) -> this.data.attr('asButton') ? vis.binds.jqueryui.classes(el) : '' %>>
         <div id="<%= this.data.attr('wid') %>_body" class="vis-widget-body" style="width:100%; height:100%" <%= (el) -> vis.preloadImages(['widgets/jqui-mfd/img/light_light_dim_100.png','widgets/jqui-mfd/img/light_light_dim_90.png','widgets/jqui-mfd/img/light_light_dim_80.png','widgets/jqui-mfd/img/light_light_dim_70.png','widgets/jqui-mfd/img/light_light_dim_60.png','widgets/jqui-mfd/img/light_light_dim_50.png','widgets/jqui-mfd/img/light_light_dim_40.png','widgets/jqui-mfd/img/light_light_dim_30.png','widgets/jqui-mfd/img/light_light_dim_20.png','widgets/jqui-mfd/img/light_light_dim_10.png','widgets/jqui-mfd/img/light_light_dim.png']); %>>
             <%
@@ -369,7 +342,7 @@
         <%= (this.data.show_value === 'true' || this.data.show_value === true) ? '(' + Math.round(parseFloat(vis.states.attr(this.data.oid + '.val') * 100) / 100) + ' ' + this.data.attr('units') + ')' : '' %>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, true) %> />
-        <div class="popup-helper" <%= (el) -> if (data.attr("autoclose") === 'true' || data.attr("autoclose") === true) { vis.binds.jqueryui.dialogAutoClose(el) } %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr("autoclose")) %> />
     </div>
 </script>
 
@@ -569,7 +542,7 @@
         data-vis-name="Shutter + jqui Dialog"
         data-vis-prev='<div id="prev_tplMfdShutter" style="position: relative; text-align: initial;padding: 4px "><div data-oid="dev1" class="vis-widget_prev vis-widget ui-widget ui-button ui-corner-all ui-state-default  ui-state-active" style="width: 70px; height: 70px;"><div class="vis-widget-prev-body"> <img style="filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);" width="100%" src="widgets/jqui-mfd/img/fts_shutter_30.png"> </div></div></div>'
         data-vis-attrs="oid;oid-working;min;max;invert_icon/checkbox;asButton[true]/checkbox;invert_value/checkbox;show_active/checkbox;"
-        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/checkbox;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;" >
+        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;" >
     <div data-oid="<%= this.data.attr('oid') %>" data-hm-wid="<%= this.data.attr('oid-working') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:76px; height:76px; position:absolute" <%= (el) -> this.data.attr('show_active') ? vis.binds.jqueryui.classes(el, true) : '' %>>
         <div id="<%= this.data.attr('wid') %>_body" class="vis-widget-body" style="width:100%; height:100%" <%= (el) -> vis.preloadImages(['widgets/jqui-mfd/img/light_light_dim_100.png','widgets/jqui-mfd/img/light_light_dim_90.png','widgets/jqui-mfd/img/light_light_dim_80.png','widgets/jqui-mfd/img/light_light_dim_70.png','widgets/jqui-mfd/img/light_light_dim_60.png','widgets/jqui-mfd/img/light_light_dim_50.png','widgets/jqui-mfd/img/light_light_dim_40.png','widgets/jqui-mfd/img/light_light_dim_30.png','widgets/jqui-mfd/img/light_light_dim_20.png','widgets/jqui-mfd/img/light_light_dim_10.png','widgets/jqui-mfd/img/light_light_dim.png']); %>>
             <%
@@ -641,7 +614,7 @@
             <%= (this.data.show_value === 'true' || this.data.show_value === true) ? '(' + Math.round(parseFloat(vis.states.attr(this.data.oid + '.val') * 100) / 100) + ' ' + this.data.attr('units') + ')' : '' %>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, true) %> />
-        <div class="popup-helper" <%= (el) -> if (data.attr("autoclose") === 'true' || data.attr("autoclose") === true) { vis.binds.jqueryui.dialogAutoClose(el) } %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr("autoclose")) %> />
     </div>
 </script>
 
@@ -653,7 +626,7 @@
         data-vis-set="ctrl,heating,dialog"
         data-vis-name="ctrl - Heating + jqui Dialog"
         data-vis-attrs="oid;oid-working;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;"
-        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/checkbox;modal/checkbox;dialog_width[600];dialog_height[200];"
+        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[600];dialog_height[200];"
         >
     <div data-oid="<%= this.data.attr('oid') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:76px; height:76px; position:absolute" >
     <div id="<%= this.data.attr('wid') %>_body" class="vis-widget-body" style="width:100%; height:100%">
@@ -686,7 +659,7 @@
             <%= (parseFloat(vis.states.attr(this.data.oid + '.val'))).toFixed(1) %>°C
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, true) %> />
-        <div class="popup-helper" <%= (el) -> if (data.attr("autoclose") === 'true' || data.attr("autoclose") === true) { vis.binds.jqueryui.dialogAutoClose(el) } %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr("autoclose")) %> />
     </div>
 </script>
 
@@ -1041,7 +1014,7 @@
      data-vis-name="Valve + jqui Dialog"
      data-vis-prev='<div id="prev_tplMfdValveDialog" style="position: relative; text-align: initial;padding: 4px "><div data-oid="dev1" class="vis-widget_prev vis-widget ui-widget ui-button ui-corner-all ui-state-default  ui-state-active" style="width: 70px; height: 70px;"><div class="vis-widget-prev-body"> <img style="filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);" width="100%" src="widgets/jqui-mfd/img/sani_valve_30.png"> </div></div></div>'
      data-vis-attrs="oid;oid-working;min;max;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;invert_value/checkbox;show_active/checkbox;"
-     data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/checkbox;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;">
+     data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;">
 <div data-oid="<%= this.data.attr('oid') %>" data-hm-wid="<%= this.data.attr('oid-working') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:76px; height:76px; position:absolute" <%= (el) -> this.data.attr('show_active') ? vis.binds.jqueryui.classes(el, true) : '' %>>
     <div id="<%= this.data.attr('wid') %>_body" class="vis-widget-body" style="width:100%; height:100%" <%= (el) -> vis.preloadImages(['widgets/jqui-mfd/img/sani_valve_100.png','widgets/jqui-mfd/img/sani_valve_90.png','widgets/jqui-mfd/img/sani_valve_80.png','widgets/jqui-mfd/img/sani_valve_70.png','widgets/jqui-mfd/img/sani_valve_60.png','widgets/jqui-mfd/img/sani_valve_50.png','widgets/jqui-mfd/img/sani_valve_40.png','widgets/jqui-mfd/img/sani_valve_30.png','widgets/jqui-mfd/img/sani_valve_20.png','widgets/jqui-mfd/img/sani_valve_10.png','widgets/jqui-mfd/img/sani_valve_0.png']); %>>
     <%
@@ -1111,7 +1084,7 @@
         <%= (this.data.show_value === 'true' || this.data.show_value === true) ? '(' + Math.round(parseFloat(vis.states.attr(this.data.oid + '.val') * 100) / 100) + ' ' + this.data.attr('units') + ')' : '' %>
     </div>
     <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, true) %> />
-    <div class="popup-helper" <%= (el) -> if (data.attr("autoclose") === 'true' || data.attr("autoclose") === true) { vis.binds.jqueryui.dialogAutoClose(el) } %> />
+    <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr("autoclose")) %> />
 </div>
 </script>
 
@@ -1138,7 +1111,7 @@
          data-vis-name="Custom10 + jqui Dialog"
          data-vis-prev='<div id="prev_tplMfdCustom10Dialog" style="position: relative; text-align: initial;padding: 4px "><div data-oid="dev1" class="vis-widget_prev vis-widget ui-widget ui-button ui-corner-all ui-state-default  ui-state-active" style="width: 70px; height: 70px;"><div class="vis-widget-prev-body"> <img style="filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);" width="100%" src="widgets/jqui-mfd/img/sani_valve_custom.svg"> </div></div></div>'
          data-vis-attrs="oid;oid-working;min;max;asButton[true]/checkbox;invert_value/checkbox;show_active/checkbox;"
-         data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/checkbox;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;"
+         data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;"
          data-vis-attrs1="group.images;icon0[widgets~jqui-mfd~img~sani_valve_0.png]/image;icon1[widgets~jqui-mfd~img~sani_valve_10.png]/image;icon2[widgets~jqui-mfd~img~sani_valve_20.png]/image;icon3[widgets~jqui-mfd~img~sani_valve_30.png]/image;icon4[widgets~jqui-mfd~img~sani_valve_40.png]/image;icon5[widgets~jqui-mfd~img~sani_valve_50.png]/image;icon6[widgets~jqui-mfd~img~sani_valve_60.png]/image;icon7[widgets~jqui-mfd~img~sani_valve_70.png]/image;icon8[widgets~jqui-mfd~img~sani_valve_80.png]/image;icon9[widgets~jqui-mfd~img~sani_valve_90.png]/image;icon10[widgets~jqui-mfd~img~sani_valve_100.png]/image;"
          >
  <div data-oid="<%= this.data.attr('oid') %>" data-hm-wid="<%= this.data.attr('oid-working') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:76px; height:76px; position:absolute" <%= (el) -> this.data.attr('show_active') ? vis.binds.jqueryui.classes(el, true) : '' %>>
@@ -1167,7 +1140,7 @@
         <%= (this.data.show_value === 'true' || this.data.show_value === true) ? '(' + Math.round(parseFloat(vis.states.attr(this.data.oid + '.val') * 100) / 100) + ' ' + this.data.attr('units') + ')' : '' %>
     </div>
     <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, true) %> />
-    <div class="popup-helper" <%= (el) -> if (data.attr("autoclose") === 'true' || data.attr("autoclose") === true) { vis.binds.jqueryui.dialogAutoClose(el) } %> />
+    <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr("autoclose")) %> />
 </div>
 </script>
 
@@ -1251,7 +1224,7 @@
 
      </div>
      <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el,{width:440,height:320,modal:data.attr('modal')},true) %> />
-     <div class="popup-helper" <%= (el) -> if (data.attr("autoclose") === 'true' || data.attr("autoclose") === true) { vis.binds.jqueryui.dialogAutoClose(el) } %> />
+     <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr("autoclose")) %> />
      </div>
  </script>
 
@@ -1345,7 +1318,7 @@
 
      </div>
      <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el,{width:440,height:320,modal:data.attr('modal')},true) %> />
-     <div class="popup-helper" <%= (el) -> if (data.attr("autoclose") === 'true' || data.attr("autoclose") === true) { vis.binds.jqueryui.dialogAutoClose(el) } %> />
+     <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr("autoclose")) %> />
      </div>
  </script>
 
@@ -1451,7 +1424,7 @@
      </div>
      <div class="pupup-helper" <%= (el) -> vis.binds.jqueryui.hueColormode(el, hueIDs.COLORMODE) %> />
      <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el,{width:440,height:320,modal:data.attr('modal')},true) %> />
-     <div class="popup-helper" <%= (el) -> if (data.attr("autoclose") === 'true' || data.attr("autoclose") === true) { vis.binds.jqueryui.dialogAutoClose(el) } %> />
+     <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr("autoclose")) %> />
      </div>
  </script-->
 
