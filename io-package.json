@@ -1,7 +1,14 @@
 {
     "common": {
         "name":                     "vis-jqui-mfd",
-        "version": "0.1.0",
+        "version": "1.0.0",
+		"news": {
+            "1.0.0": {
+                "en": "increase default width of popup windows",
+                "de": "increase default width of popup windows",
+                "ru": "increase default width of popup windows"
+            }
+        },
         "title":                    "ioBroker Visualisation - jQuery-UI style Widgets",
         "desc": {
             "en":                   "jQuery-UI Widgets for ioBroker.vis with OpenAutomationProject icons",
@@ -26,6 +33,7 @@
         "onlyWWW":                  true,
         "singleton":                true,
         "type":                     "vis",
+		"noConfig":                 true,
 		"restartAdapters":          ["vis"]
     },
     "native": {

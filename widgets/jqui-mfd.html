@@ -1,3 +1,11 @@
+<!--
+    ioBroker.vis JQuery widgets with MFD icons
+
+    version: "1.0.0"
+
+    Copyright 6'2014-2016 bluefox<dogafox@gmail.com>, hobbyquaker<hobbyquaker@ccu.io>
+
+-->
  <style type="text/css">
  .hue-slider-hue.ui-slider {
      background-image: url(widgets/jqui/img/hue.png);
@@ -69,6 +77,17 @@
         "closed":   {"en": "closed",    "de": "zu",     "ru": "закр."},
         "open":     {"en": "open",      "de": "auf",    "ru": "откр."}
     });
+
+vis.binds['jqui-mfd'] = {
+    version: "1.0.0",
+    showVersion: function () {
+        if (vis.binds['jqui-mfd'].version) {
+            console.log('Version vis-jqui-mfd: ' + vis.binds['jqui-mfd'].version);
+            vis.binds['jqui-mfd'].version = null;
+        }
+    }
+};
+vis.binds['jqui-mfd'].showVersion();
 </script>
 
 <script id="tplMfdLight" 
@@ -266,7 +285,7 @@
         data-vis-prev='<img src="widgets/jqui-mfd/img/Prev_Dimmer_jquiDialog.png"></img>'
         data-vis-name="Dimmer + jqui Dialog"
         data-vis-attrs="oid;oid-working;min;max;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;"
-        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;">
+        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[470];dialog_height[210];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;">
     <div data-oid="<%= this.data.attr('oid') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:76px; height:76px; position:absolute" <%= (el) -> this.data.attr('asButton') ? vis.binds.jqueryui.classes(el) : '' %>>
         <div id="<%= this.data.attr('wid') %>_body" class="vis-widget-body" style="width:100%; height:100%" <%= (el) -> vis.preloadImages(['widgets/jqui-mfd/img/light_light_dim_100.png','widgets/jqui-mfd/img/light_light_dim_90.png','widgets/jqui-mfd/img/light_light_dim_80.png','widgets/jqui-mfd/img/light_light_dim_70.png','widgets/jqui-mfd/img/light_light_dim_60.png','widgets/jqui-mfd/img/light_light_dim_50.png','widgets/jqui-mfd/img/light_light_dim_40.png','widgets/jqui-mfd/img/light_light_dim_30.png','widgets/jqui-mfd/img/light_light_dim_20.png','widgets/jqui-mfd/img/light_light_dim_10.png','widgets/jqui-mfd/img/light_light_dim.png']); %>>
             <%
@@ -542,7 +561,7 @@
         data-vis-name="Shutter + jqui Dialog"
         data-vis-prev='<div id="prev_tplMfdShutter" style="position: relative; text-align: initial;padding: 4px "><div data-oid="dev1" class="vis-widget_prev vis-widget ui-widget ui-button ui-corner-all ui-state-default  ui-state-active" style="width: 70px; height: 70px;"><div class="vis-widget-prev-body"> <img style="filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);" width="100%" src="widgets/jqui-mfd/img/fts_shutter_30.png"> </div></div></div>'
         data-vis-attrs="oid;oid-working;min;max;invert_icon/checkbox;asButton[true]/checkbox;invert_value/checkbox;show_active/checkbox;"
-        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[440];dialog_height[200];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;" >
+        data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[450];dialog_height[210];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;show_value/checkbox;units;" >
     <div data-oid="<%= this.data.attr('oid') %>" data-hm-wid="<%= this.data.attr('oid-working') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:76px; height:76px; position:absolute" <%= (el) -> this.data.attr('show_active') ? vis.binds.jqueryui.classes(el, true) : '' %>>
         <div id="<%= this.data.attr('wid') %>_body" class="vis-widget-body" style="width:100%; height:100%" <%= (el) -> vis.preloadImages(['widgets/jqui-mfd/img/light_light_dim_100.png','widgets/jqui-mfd/img/light_light_dim_90.png','widgets/jqui-mfd/img/light_light_dim_80.png','widgets/jqui-mfd/img/light_light_dim_70.png','widgets/jqui-mfd/img/light_light_dim_60.png','widgets/jqui-mfd/img/light_light_dim_50.png','widgets/jqui-mfd/img/light_light_dim_40.png','widgets/jqui-mfd/img/light_light_dim_30.png','widgets/jqui-mfd/img/light_light_dim_20.png','widgets/jqui-mfd/img/light_light_dim_10.png','widgets/jqui-mfd/img/light_light_dim.png']); %>>
             <%

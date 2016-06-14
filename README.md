@@ -7,6 +7,9 @@ jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI i
 
 ## Changelog
 
+### 1.0.0 (2016-06-14)
+- (bluefox) increase default width of popup windows
+
 ### 0.1.0 (2015-10-31)
 - (bluefox) change Light Dialog => to OnOff Dialog
 - (bluefox) expand auto close with timeout
