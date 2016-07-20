@@ -6,6 +6,8 @@ jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI i
 ![Screenshot](img/Demo2.png)
 
 ## Changelog
+### 1.0.0 (2016-07-20)
+- (jens-maus) implemented color support for each separate state of the jqui-mfd wigets
 
 ### 1.0.0 (2016-06-14)
 - (bluefox) increase default width of popup windows
@@ -18,5 +20,5 @@ jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI i
 - (bluefox) initial checkin
 
 ## License
- Copyright (c) 2013-2015 hobbyquaker https://github.com/hobbyquaker, bluefox https://github.com/GermanBluefox
+ Copyright (c) 2013-2016 hobbyquaker https://github.com/hobbyquaker, bluefox https://github.com/GermanBluefox
  MIT
