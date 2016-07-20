@@ -1366,39 +1366,77 @@ vis.binds['jqui-mfd'].showVersion();
 
         var image = null;
         var imageColor = null;
-        if ((this.data.attr('iconValue10') && this.data.attr('iconValue10') == str) || val >= max) {
-            imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
-            image = this.data.attr('icon10');
-        } else if ((this.data.attr('iconValue9') && this.data.attr('iconValue9') == str) || val >= min + (max - min) * 0.9) {
-            imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
-            image = this.data.attr('icon9');
-        } else if ((this.data.attr('iconValue8') && this.data.attr('iconValue8') == str) || val >= min + (max - min) * 0.8) {
-            imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
-            image = this.data.attr('icon8');
-        } else if ((this.data.attr('iconValue7') && this.data.attr('iconValue7') == str) || val >= min + (max - min) * 0.7) {
-            imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
-            image = this.data.attr('icon7');
-        } else if ((this.data.attr('iconValue6') && this.data.attr('iconValue6') == str) || val >= min + (max - min) * 0.6) {
-            imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
-            image = this.data.attr('icon6');
-        } else if ((this.data.attr('iconValue5') && this.data.attr('iconValue5') == str) || val >= min + (max - min) * 0.5) {
-            imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
-            image = this.data.attr('icon5');
-        } else if ((this.data.attr('iconValue4') && this.data.attr('iconValue4') == str) || val >= min + (max - min) * 0.4) {
-            imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
-            image = this.data.attr('icon4');
-        } else if ((this.data.attr('iconValue3') && this.data.attr('iconValue3') == str) || val >= min + (max - min) * 0.3) {
-            imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
-            image = this.data.attr('icon3');
-        } else if ((this.data.attr('iconValue2') && this.data.attr('iconValue2') == str) || val >= min + (max - min) * 0.2) {
-            imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
-            image = this.data.attr('icon2');
-        } else if ((this.data.attr('iconValue1') && this.data.attr('iconValue1') == str) || val >= min + (max - min) * 0.1) {
-            imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
-            image = this.data.attr('icon1');
-        } else if (!this.data.attr('iconValue0') || this.data.attr('iconValue0') == str) {
+
+        if ((this.data.attr('iconValue0') && this.data.attr('iconValue0') == str)) {
             imageColor = this.data.attr('iconColor0') ? this.data.attr('iconColor0') : this.data.attr('iconColor');
             image = this.data.attr('icon0');
+        } else if ((this.data.attr('iconValue1') && this.data.attr('iconValue1') == str)) {
+            imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
+            image = this.data.attr('icon1');
+        } else if ((this.data.attr('iconValue2') && this.data.attr('iconValue2') == str)) {
+            imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
+            image = this.data.attr('icon2');
+        } else if ((this.data.attr('iconValue3') && this.data.attr('iconValue3') == str)) {
+            imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
+            image = this.data.attr('icon3');
+        } else if ((this.data.attr('iconValue4') && this.data.attr('iconValue4') == str)) {
+            imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
+            image = this.data.attr('icon4');
+        } else if ((this.data.attr('iconValue5') && this.data.attr('iconValue5') == str)) {
+            imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
+            image = this.data.attr('icon5');
+        } else if ((this.data.attr('iconValue6') && this.data.attr('iconValue6') == str)) {
+            imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
+            image = this.data.attr('icon6');
+        } else if ((this.data.attr('iconValue7') && this.data.attr('iconValue7') == str)) {
+            imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
+            image = this.data.attr('icon7');
+        } else if ((this.data.attr('iconValue8') && this.data.attr('iconValue8') == str)) {
+            imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
+            image = this.data.attr('icon8');
+        } else if ((this.data.attr('iconValue9') && this.data.attr('iconValue9') == str)) {
+            imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
+            image = this.data.attr('icon9');
+        } else if (!this.data.attr('iconValue10') || this.data.attr('iconValue10') == str) {
+            imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
+            image = this.data.attr('icon10');
+        }
+
+        if (!image && !imageColor) {
+            if (val >= max) {
+                imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
+                image = this.data.attr('icon10');
+            } else if (val >= min + (max - min) * 0.9) {
+                imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
+                image = this.data.attr('icon9');
+            } else if (val >= min + (max - min) * 0.8) {
+                imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
+                image = this.data.attr('icon8');
+            } else if (val >= min + (max - min) * 0.7) {
+                imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
+                image = this.data.attr('icon7');
+            } else if (val >= min + (max - min) * 0.6) {
+                imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
+                image = this.data.attr('icon6');
+            } else if (val >= min + (max - min) * 0.5) {
+                imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
+                image = this.data.attr('icon5');
+            } else if (val >= min + (max - min) * 0.4) {
+                imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
+                image = this.data.attr('icon4');
+            } else if (val >= min + (max - min) * 0.3) {
+                imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
+                image = this.data.attr('icon3');
+            } else if (val >= min + (max - min) * 0.2) {
+                imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
+                image = this.data.attr('icon2');
+            } else if (val >= min + (max - min) * 0.1) {
+                imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
+                image = this.data.attr('icon1');
+            } else {
+                imageColor = this.data.attr('iconColor0') ? this.data.attr('iconColor0') : this.data.attr('iconColor');
+                image = this.data.attr('icon0');
+            }
         }
 
         if (image) {
@@ -1447,39 +1485,77 @@ vis.binds['jqui-mfd'].showVersion();
 
         var image = null;
         var imageColor = null;
-        if ((this.data.attr('iconValue10') && this.data.attr('iconValue10') == str) || val >= max) {
-            imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
-            image = this.data.attr('icon10');
-        } else if ((this.data.attr('iconValue9') && this.data.attr('iconValue9') == str) || val >= min + (max - min) * 0.9) {
-            imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
-            image = this.data.attr('icon9');
-        } else if ((this.data.attr('iconValue8') && this.data.attr('iconValue8') == str) || val >= min + (max - min) * 0.8) {
-            imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
-            image = this.data.attr('icon8');
-        } else if ((this.data.attr('iconValue7') && this.data.attr('iconValue7') == str) || val >= min + (max - min) * 0.7) {
-            imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
-            image = this.data.attr('icon7');
-        } else if ((this.data.attr('iconValue6') && this.data.attr('iconValue6') == str) || val >= min + (max - min) * 0.6) {
-            imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
-            image = this.data.attr('icon6');
-        } else if ((this.data.attr('iconValue5') && this.data.attr('iconValue5') == str) || val >= min + (max - min) * 0.5) {
-            imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
-            image = this.data.attr('icon5');
-        } else if ((this.data.attr('iconValue4') && this.data.attr('iconValue4') == str) || val >= min + (max - min) * 0.4) {
-            imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
-            image = this.data.attr('icon4');
-        } else if ((this.data.attr('iconValue3') && this.data.attr('iconValue3') == str) || val >= min + (max - min) * 0.3) {
-            imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
-            image = this.data.attr('icon3');
-        } else if ((this.data.attr('iconValue2') && this.data.attr('iconValue2') == str) || val >= min + (max - min) * 0.2) {
-            imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
-            image = this.data.attr('icon2');
-        } else if ((this.data.attr('iconValue1') && this.data.attr('iconValue1') == str) || val >= min + (max - min) * 0.1) {
-            imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
-            image = this.data.attr('icon1');
-        } else if (!this.data.attr('iconValue0') || this.data.attr('iconValue0') == str) {
+
+        if ((this.data.attr('iconValue0') && this.data.attr('iconValue0') == str)) {
             imageColor = this.data.attr('iconColor0') ? this.data.attr('iconColor0') : this.data.attr('iconColor');
             image = this.data.attr('icon0');
+        } else if ((this.data.attr('iconValue1') && this.data.attr('iconValue1') == str)) {
+            imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
+            image = this.data.attr('icon1');
+        } else if ((this.data.attr('iconValue2') && this.data.attr('iconValue2') == str)) {
+            imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
+            image = this.data.attr('icon2');
+        } else if ((this.data.attr('iconValue3') && this.data.attr('iconValue3') == str)) {
+            imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
+            image = this.data.attr('icon3');
+        } else if ((this.data.attr('iconValue4') && this.data.attr('iconValue4') == str)) {
+            imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
+            image = this.data.attr('icon4');
+        } else if ((this.data.attr('iconValue5') && this.data.attr('iconValue5') == str)) {
+            imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
+            image = this.data.attr('icon5');
+        } else if ((this.data.attr('iconValue6') && this.data.attr('iconValue6') == str)) {
+            imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
+            image = this.data.attr('icon6');
+        } else if ((this.data.attr('iconValue7') && this.data.attr('iconValue7') == str)) {
+            imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
+            image = this.data.attr('icon7');
+        } else if ((this.data.attr('iconValue8') && this.data.attr('iconValue8') == str)) {
+            imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
+            image = this.data.attr('icon8');
+        } else if ((this.data.attr('iconValue9') && this.data.attr('iconValue9') == str)) {
+            imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
+            image = this.data.attr('icon9');
+        } else if (!this.data.attr('iconValue10') || this.data.attr('iconValue10') == str) {
+            imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
+            image = this.data.attr('icon10');
+        }
+
+        if (!image && !imageColor) {
+            if (val >= max) {
+                imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
+                image = this.data.attr('icon10');
+            } else if (val >= min + (max - min) * 0.9) {
+                imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
+                image = this.data.attr('icon9');
+            } else if (val >= min + (max - min) * 0.8) {
+                imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
+                image = this.data.attr('icon8');
+            } else if (val >= min + (max - min) * 0.7) {
+                imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
+                image = this.data.attr('icon7');
+            } else if (val >= min + (max - min) * 0.6) {
+                imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
+                image = this.data.attr('icon6');
+            } else if (val >= min + (max - min) * 0.5) {
+                imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
+                image = this.data.attr('icon5');
+            } else if (val >= min + (max - min) * 0.4) {
+                imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
+                image = this.data.attr('icon4');
+            } else if (val >= min + (max - min) * 0.3) {
+                imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
+                image = this.data.attr('icon3');
+            } else if (val >= min + (max - min) * 0.2) {
+                imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
+                image = this.data.attr('icon2');
+            } else if (val >= min + (max - min) * 0.1) {
+                imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
+                image = this.data.attr('icon1');
+            } else {
+                imageColor = this.data.attr('iconColor0') ? this.data.attr('iconColor0') : this.data.attr('iconColor');
+                image = this.data.attr('icon0');
+            }
         }
 
         if (image) {
