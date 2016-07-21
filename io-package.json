@@ -1,9 +1,9 @@
 {
     "common": {
         "name":                     "vis-jqui-mfd",
-        "version": "1.0.1",
+        "version": "1.0.2",
 		"news": {
-			"1.0.1": {
+			"1.0.2": {
                 "en": "implemented color support for each separate state of the jqui-mfd wigets",
                 "de": "implemented color support for each separate state of the jqui-mfd wigets",
                 "ru": "implemented color support for each separate state of the jqui-mfd wigets"
