@@ -6,6 +6,9 @@ jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI i
 ![Screenshot](img/Demo2.png)
 
 ## Changelog
+### 1.0.3 (2016-07-25)
+- (jens-maus) removed left over debugger statement
+
 ### 1.0.2 (2016-07-21)
 - (jens-maus) implemented color support for each separate state of the jqui-mfd wigets
 
