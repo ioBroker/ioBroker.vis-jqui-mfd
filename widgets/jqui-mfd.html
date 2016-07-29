@@ -1,7 +1,7 @@
 <!--
     ioBroker.vis JQuery widgets with MFD icons
 
-    version: "1.0.3"
+    version: "1.0.4"
 
     Copyright 6'2014-2016 bluefox<dogafox@gmail.com>, hobbyquaker<hobbyquaker@ccu.io>
 
@@ -19,7 +19,7 @@
 </style>
 
 <script type="text/javascript">
-    "use strict";
+    'use strict';
 
     if (vis.editMode) {
         $.extend(systemDictionary, {
@@ -27,19 +27,19 @@
             "modal":        {"en": "Modal",                 "de": "Modal",                  "ru": "Модальное"},
             "invert_state": {"en": "Invert state",          "de": "Invertiere Zustand",     "ru": "Инвертировать состояние"},
             "asButton":     {"en": "Button rectangle",      "de": "Knopf-Viereck",          "ru": "Фон кнопки"},
-            "icon_off":     {"en": "Icon for OFF",          "de": "Symbol für AUS",           "ru": "Иконка для ВЫКЛ"},
-            "iconColor_off":{"en": "Icon color for OFF",    "de": "Symbolfarbe für AUS",      "ru": ""},
-            "icon_on":      {"en": "Icon for ON",           "de": "Symbol für AN",            "ru": "Иконка для ВКЛ"},
-            "iconColor_on": {"en": "Icon color for ON",     "de": "Symbolfarbe für AN",       "ru": ""},
+            "icon_off":     {"en": "Icon for OFF",          "de": "Symbol für AUS",         "ru": "Иконка для ВЫКЛ"},
+            "iconColor_off":{"en": "Icon color for OFF",    "de": "Symbolfarbe für AUS",    "ru": "Цвет иконки для ВЫКЛ"},
+            "icon_on":      {"en": "Icon for ON",           "de": "Symbol für AN",          "ru": "Иконка для ВКЛ"},
+            "iconColor_on": {"en": "Icon color for ON",     "de": "Symbolfarbe für AN",     "ru": "Цвет иконки для ВКЛ"},
             "closed_value": {"en": "Value for CLOSED",      "de": "Wert für ZU",            "ru": "Значение для ЗАКРЫТО"},
             "tilted_value": {"en": "Value for TILTED",      "de": "Wert für GEKIPPT",       "ru": "Значение для ОТКИНУТО"},
             "opened_value": {"en": "Value for OPENED",      "de": "Wert für AUF",           "ru": "Значение для ОТКРЫТО"},
-            "closed_icon":  {"en": "Icon for CLOSED",       "de": "Symbol für ZU",            "ru": "Иконка для ЗАКРЫТО"},
-            "closed_iconColor":{"en": "Icon color for CLOSED", "de": "Symbolfarbe für ZU",    "ru": ""},
-            "tilted_icon":  {"en": "Icon for TILTED",       "de": "Symbol für GEKIPPT",       "ru": "Иконка для ОТКИНУТО"},
-            "tilted_iconColor":{"en": "Icon color for TILTED", "de": "Symbolfarbe für GEKIPPT", "ru": ""},
-            "opened_icon":  {"en": "Icon for OPENED",       "de": "Symbol für AUF",           "ru": "Иконка для ОТКРЫТО"},
-            "opened_iconColor":{"en": "Icon color for OPENED", "de": "Symbolfarbe für AUF",   "ru": ""},
+            "closed_icon":  {"en": "Icon for CLOSED",       "de": "Symbol für ZU",          "ru": "Иконка для ЗАКРЫТО"},
+            "closed_iconColor":{"en": "Icon color for CLOSED", "de": "Symbolfarbe für ZU",  "ru": "Цвет иконки для ЗАКРЫТО"},
+            "tilted_icon":  {"en": "Icon for TILTED",       "de": "Symbol für GEKIPPT",     "ru": "Иконка для ОТКИНУТО"},
+            "tilted_iconColor":{"en": "Icon color for TILTED", "de": "Symbolfarbe für GEKIPPT", "ru": "Цвет иконки для ОТКИНУТО"},
+            "opened_icon":  {"en": "Icon for OPENED",       "de": "Symbol für AUF",         "ru": "Иконка для ОТКРЫТО"},
+            "opened_iconColor":{"en": "Icon color for OPENED", "de": "Symbolfarbe für AUF", "ru": "Цвет иконки для ОТКРЫТО"},
             "invert_value": {"en": "Invert value",          "de": "Invertiere Wert",        "ru": "Инвертировать значение"},
             "show_active":  {"en": "Show active background", "de": "Zeige aktieven Hintergrund", "ru": "Показать активный фон"},
             "set_oid":      {"en": "Set temperature ID",    "de": "Soll-Temperature ID",    "ru": "ID задаваемой температуры"},
@@ -59,45 +59,52 @@
             "group_values": {"en": "Values",                "de": "Werte",                  "ru": "Значения"},
             "iconColor":    {"en": "Icon color",            "de": "Symbolfarbe",            "ru": "Цвет иконки"},
             "group_images": {"en": "Icons",                 "de": "Symbole",                "ru": "Картинки"},
-            "group_colors": {"en": "Icon colors (SVG)",     "de": "Symbolfarben (SVG)",     "ru": ""},
-            "icon0":        {"en": "Icon 0%",               "de": "Symbol für 0%",          "ru": "Картинка 0%"},
-            "iconColor0":   {"en": "Icon color 0%",         "de": "Symbolfarbe bei 0%",     "ru": ""},
-            "iconValue0":   {"en": "Icon value 0%",         "de": "Symbolwert für 0%",      "ru": ""},
+            "group_colors": {"en": "Icon colors (SVG)",     "de": "Symbolfarben (SVG)",     "ru": "Цвета картинки (SVG)"},
+            "icon0":        {"en": "Icon 0%",               "de": "Symbol für 0%",          "ru": "Картинка для 0%"},
+            "iconColor0":   {"en": "Icon color 0%",         "de": "Symbolfarbe bei 0%",     "ru": "Цвет для 0%"},
+            "iconValue0":   {"en": "Icon value 0%",         "de": "Symbolwert für 0%",      "ru": "Значение для 0%"},
+            "iconValue0_tooltip":   {
+                "en": "Icon value when defined picture must be shown",
+                "de": "Symbolwert bei welchem sollte das Bild erscheinen",
+                "ru": "Значение, когда должна появлятся эта иконка"
+            },
             "icon1":        {"en": "Icon 10%",              "de": "Symbol für 10%",         "ru": "Картинка 10%"},
-            "iconColor1":   {"en": "Icon color 10%",        "de": "Symbolfarbe bei 10%",    "ru": ""},
-            "iconValue1":   {"en": "Icon value 10%",        "de": "Symbolwert für 10%",     "ru": ""},
+            "iconColor1":   {"en": "Icon color 10%",        "de": "Symbolfarbe bei 10%",    "ru": "Цвет для 0%"},
+            "iconValue1":   {"en": "Icon value 10%",        "de": "Symbolwert für 10%",     "ru": "Значение для 0%"},
             "icon2":        {"en": "Icon 20%",              "de": "Symbol für 20%",         "ru": "Картинка 20%"},
-            "iconColor2":   {"en": "Icon color 20%",        "de": "Symbolfarbe bei 20%",    "ru": ""},
-            "iconValue2":   {"en": "Icon value 20%",        "de": "Symbolwert für 20%",     "ru": ""},
+            "iconColor2":   {"en": "Icon color 20%",        "de": "Symbolfarbe bei 20%",    "ru": "Цвет для 0%"},
+            "iconValue2":   {"en": "Icon value 20%",        "de": "Symbolwert für 20%",     "ru": "Значение для 0%"},
             "icon3":        {"en": "Icon 30%",              "de": "Symbol für 30%",         "ru": "Картинка 30%"},
-            "iconColor3":   {"en": "Icon color 30%",        "de": "Symbolfarbe bei 30%",    "ru": ""},
-            "iconValue3":   {"en": "Icon value 30%",        "de": "Symbolwert für 30%",     "ru": ""},
+            "iconColor3":   {"en": "Icon color 30%",        "de": "Symbolfarbe bei 30%",    "ru": "Цвет для 0%"},
+            "iconValue3":   {"en": "Icon value 30%",        "de": "Symbolwert für 30%",     "ru": "Значение для 0%"},
             "icon4":        {"en": "Icon 40%",              "de": "Symbol für 40%",         "ru": "Картинка 40%"},
-            "iconColor4":   {"en": "Icon color 40%",        "de": "Symbolfarbe bei 40%",    "ru": ""},
-            "iconValue4":   {"en": "Icon value 40%",        "de": "Symbolwert für 40%",     "ru": ""},
+            "iconColor4":   {"en": "Icon color 40%",        "de": "Symbolfarbe bei 40%",    "ru": "Цвет для 0%"},
+            "iconValue4":   {"en": "Icon value 40%",        "de": "Symbolwert für 40%",     "ru": "Значение для 0%"},
             "icon5":        {"en": "Icon 50%",              "de": "Symbol für 50%",         "ru": "Картинка 50%"},
-            "iconColor5":   {"en": "Icon color 50%",        "de": "Symbolfarbe bei 50%",    "ru": ""},
-            "iconValue5":   {"en": "Icon value 50%",        "de": "Symbolwert für 50%",     "ru": ""},
+            "iconColor5":   {"en": "Icon color 50%",        "de": "Symbolfarbe bei 50%",    "ru": "Цвет для 0%"},
+            "iconValue5":   {"en": "Icon value 50%",        "de": "Symbolwert für 50%",     "ru": "Значение для 0%"},
             "icon6":        {"en": "Icon 60%",              "de": "Symbol für 60%",         "ru": "Картинка 60%"},
-            "iconColor6":   {"en": "Icon color 60%",        "de": "Symbolfarbe bei 60%",    "ru": ""},
-            "iconValue6":   {"en": "Icon value 60%",        "de": "Symbolwert für 60%",     "ru": ""},
+            "iconColor6":   {"en": "Icon color 60%",        "de": "Symbolfarbe bei 60%",    "ru": "Цвет для 0%"},
+            "iconValue6":   {"en": "Icon value 60%",        "de": "Symbolwert für 60%",     "ru": "Значение для 0%"},
             "icon7":        {"en": "Icon 70%",              "de": "Symbol für 70%",         "ru": "Картинка 70%"},
-            "iconColor7":   {"en": "Icon color 70%",        "de": "Symbolfarbe bei 70%",    "ru": ""},
-            "iconValue7":   {"en": "Icon value 70%",        "de": "Symbolwert für 70%",     "ru": ""},
+            "iconColor7":   {"en": "Icon color 70%",        "de": "Symbolfarbe bei 70%",    "ru": "Цвет для 0%"},
+            "iconValue7":   {"en": "Icon value 70%",        "de": "Symbolwert für 70%",     "ru": "Значение для 0%"},
             "icon8":        {"en": "Icon 80%",              "de": "Symbol für 80%",         "ru": "Картинка 80%"},
-            "iconColor8":   {"en": "Icon color 80%",        "de": "Symbolfarbe bei 80%",    "ru": ""},
-            "iconValue8":   {"en": "Icon value 80%",        "de": "Symbolwert für 80%",     "ru": ""},
+            "iconColor8":   {"en": "Icon color 80%",        "de": "Symbolfarbe bei 80%",    "ru": "Цвет для 0%"},
+            "iconValue8":   {"en": "Icon value 80%",        "de": "Symbolwert für 80%",     "ru": "Значение для 0%"},
             "icon9":        {"en": "Icon 90%",              "de": "Symbol für 90%",         "ru": "Картинка 90%"},
-            "iconColor9":   {"en": "Icon color 90%",        "de": "Symbolfarbe bei 90%",    "ru": ""},
-            "iconValue9":   {"en": "Icon value 90%",        "de": "Symbolwert für 90%",     "ru": ""},
+            "iconColor9":   {"en": "Icon color 90%",        "de": "Symbolfarbe bei 90%",    "ru": "Цвет для 0%"},
+            "iconValue9":   {"en": "Icon value 90%",        "de": "Symbolwert für 90%",     "ru": "Значение для 0%"},
             "icon10":       {"en": "Icon 100%",             "de": "Symbol für 100%",        "ru": "Картинка 100%"},
-            "iconColor10":  {"en": "Icon color 100%",       "de": "Symbolfarbe bei 100%",   "ru": ""},
-            "iconValue10":  {"en": "Icon value 100%",       "de": "Symbolwert für 100%",    "ru": ""},
+            "iconColor10":  {"en": "Icon color 100%",       "de": "Symbolfarbe bei 100%",   "ru": "Цвет для 0%"},
+            "iconValue10":  {"en": "Icon value 100%",       "de": "Symbolwert für 100%",    "ru": "Значение для 0%"},
             "iconOff":      {"en": "Inactive Icon",         "de": "Inaktivbild",            "ru": "Неактиваня картинка"},
             "textOff":      {"en": "Text for Off",          "de": "Text für Aus",           "ru": "Надпись для Выкл"},
             "textOn":       {"en": "Text for On",           "de": "Text für Ein",           "ru": "Надпись для Вкл"},
-            "iconColorOff": {"en": "Inactive Icon color",   "de": "Inaktive Symbolfarbe",   "ru": ""},
-            "iconColorOn":  {"en": "Active Icon color",     "de": "Aktive Symbolfarbe",     "ru": ""},
+            "iconColorOff": {"en": "Inactive Icon color",   "de": "Inaktive Symbolfarbe",   "ru": "Цвет не активной иконки"},
+            "iconColorOn":  {"en": "Active Icon color",     "de": "Aktive Symbolfarbe",     "ru": "Цвет активной иконки"},
+            "show_value":   {"en": "Show value",            "de": "Wert zeigen",            "ru": "Показывать значение"},
+            "units":        {"en": "Units",                 "de": "Einheit",                "ru": "Единицы измерения"}
         });
     }
 
@@ -109,7 +116,7 @@
     });
 
 vis.binds['jqui-mfd'] = {
-    version: "1.0.3",
+    version: "1.0.4",
     showVersion: function () {
         if (vis.binds['jqui-mfd'].version) {
             console.log('Version vis-jqui-mfd: ' + vis.binds['jqui-mfd'].version);
@@ -1366,37 +1373,37 @@ vis.binds['jqui-mfd'].showVersion();
         var image = null;
         var imageColor = null;
 
-        if ((this.data.attr('iconValue0') && this.data.attr('iconValue0') == str)) {
+        if (this.data.attr('iconValue0') && this.data.attr('iconValue0') == str) {
             imageColor = this.data.attr('iconColor0') ? this.data.attr('iconColor0') : this.data.attr('iconColor');
             image = this.data.attr('icon0');
-        } else if ((this.data.attr('iconValue1') && this.data.attr('iconValue1') == str)) {
+        } else if (this.data.attr('iconValue1') && this.data.attr('iconValue1') == str) {
             imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
             image = this.data.attr('icon1');
-        } else if ((this.data.attr('iconValue2') && this.data.attr('iconValue2') == str)) {
+        } else if (this.data.attr('iconValue2') && this.data.attr('iconValue2') == str) {
             imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
             image = this.data.attr('icon2');
-        } else if ((this.data.attr('iconValue3') && this.data.attr('iconValue3') == str)) {
+        } else if (this.data.attr('iconValue3') && this.data.attr('iconValue3') == str) {
             imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
             image = this.data.attr('icon3');
-        } else if ((this.data.attr('iconValue4') && this.data.attr('iconValue4') == str)) {
+        } else if (this.data.attr('iconValue4') && this.data.attr('iconValue4') == str) {
             imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
             image = this.data.attr('icon4');
-        } else if ((this.data.attr('iconValue5') && this.data.attr('iconValue5') == str)) {
+        } else if (this.data.attr('iconValue5') && this.data.attr('iconValue5') == str) {
             imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
             image = this.data.attr('icon5');
-        } else if ((this.data.attr('iconValue6') && this.data.attr('iconValue6') == str)) {
+        } else if (this.data.attr('iconValue6') && this.data.attr('iconValue6') == str) {
             imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
             image = this.data.attr('icon6');
-        } else if ((this.data.attr('iconValue7') && this.data.attr('iconValue7') == str)) {
+        } else if (this.data.attr('iconValue7') && this.data.attr('iconValue7') == str) {
             imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
             image = this.data.attr('icon7');
-        } else if ((this.data.attr('iconValue8') && this.data.attr('iconValue8') == str)) {
+        } else if (this.data.attr('iconValue8') && this.data.attr('iconValue8') == str) {
             imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
             image = this.data.attr('icon8');
-        } else if ((this.data.attr('iconValue9') && this.data.attr('iconValue9') == str)) {
+        } else if (this.data.attr('iconValue9') && this.data.attr('iconValue9') == str) {
             imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
             image = this.data.attr('icon9');
-        } else if ((this.data.attr('iconValue10') && this.data.attr('iconValue10') == str)) {
+        } else if (this.data.attr('iconValue10') && this.data.attr('iconValue10') == str) {
             imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
             image = this.data.attr('icon10');
         }
@@ -1485,37 +1492,37 @@ vis.binds['jqui-mfd'].showVersion();
         var image = null;
         var imageColor = null;
 
-        if ((this.data.attr('iconValue0') && this.data.attr('iconValue0') == str)) {
+        if (this.data.attr('iconValue0') && this.data.attr('iconValue0') == str) {
             imageColor = this.data.attr('iconColor0') ? this.data.attr('iconColor0') : this.data.attr('iconColor');
             image = this.data.attr('icon0');
-        } else if ((this.data.attr('iconValue1') && this.data.attr('iconValue1') == str)) {
+        } else if (this.data.attr('iconValue1') && this.data.attr('iconValue1') == str) {
             imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
             image = this.data.attr('icon1');
-        } else if ((this.data.attr('iconValue2') && this.data.attr('iconValue2') == str)) {
+        } else if (this.data.attr('iconValue2') && this.data.attr('iconValue2') == str) {
             imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
             image = this.data.attr('icon2');
-        } else if ((this.data.attr('iconValue3') && this.data.attr('iconValue3') == str)) {
+        } else if (this.data.attr('iconValue3') && this.data.attr('iconValue3') == str) {
             imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
             image = this.data.attr('icon3');
-        } else if ((this.data.attr('iconValue4') && this.data.attr('iconValue4') == str)) {
+        } else if (this.data.attr('iconValue4') && this.data.attr('iconValue4') == str) {
             imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
             image = this.data.attr('icon4');
-        } else if ((this.data.attr('iconValue5') && this.data.attr('iconValue5') == str)) {
+        } else if (this.data.attr('iconValue5') && this.data.attr('iconValue5') == str) {
             imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
             image = this.data.attr('icon5');
-        } else if ((this.data.attr('iconValue6') && this.data.attr('iconValue6') == str)) {
+        } else if (this.data.attr('iconValue6') && this.data.attr('iconValue6') == str) {
             imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
             image = this.data.attr('icon6');
-        } else if ((this.data.attr('iconValue7') && this.data.attr('iconValue7') == str)) {
+        } else if (this.data.attr('iconValue7') && this.data.attr('iconValue7') == str) {
             imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
             image = this.data.attr('icon7');
-        } else if ((this.data.attr('iconValue8') && this.data.attr('iconValue8') == str)) {
+        } else if (this.data.attr('iconValue8') && this.data.attr('iconValue8') == str) {
             imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
             image = this.data.attr('icon8');
-        } else if ((this.data.attr('iconValue9') && this.data.attr('iconValue9') == str)) {
+        } else if (this.data.attr('iconValue9') && this.data.attr('iconValue9') == str) {
             imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
             image = this.data.attr('icon9');
-        } else if (this.data.attr('iconValue10') && this.data.attr('iconValue10') == str)) {
+        } else if (this.data.attr('iconValue10') && this.data.attr('iconValue10') == str) {
             imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
             image = this.data.attr('icon10');
         }
