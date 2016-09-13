@@ -2,10 +2,19 @@
 ioBroker.vis-jqui-mfd
 ============
 
+[![NPM version](http://img.shields.io/npm/v/iobroker.vis-jqui-mfd.svg)](https://www.npmjs.com/package/iobroker.vis-jqui-mfd)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.vis-jqui-mfd.svg)](https://www.npmjs.com/package/iobroker.vis-jqui-mfd)
+
+[![NPM](https://nodei.co/npm/iobroker.vis-jqui-mfd.png?downloads=true)](https://nodei.co/npm/iobroker.vis-jqui-mfd/)
+
+
 jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI interface with icons from [OpenAutomationProject](https://github.com/OpenAutomationProject/knx-uf-iconset).
 ![Screenshot](img/Demo2.png)
 
 ## Changelog
+### 1.0.5 (2016-09-13)
+- (bluefox) add blind widget
+
 ### 1.0.4 (2016-07-28)
 - (bluefox) fix custom 10 dialog
 
