@@ -2035,7 +2035,7 @@ vis.binds['jqui-mfd'].showVersion();
         data-vis-name="Cam/Snapshot - Dialog"
         data-vis-attrs="alt;text;asButton[true]/checkbox;iconColor/color;"
         data-vis-attrs0="group.icon;icon/image;invert_icon/checkbox;icon_interval;"
-        data-vis-attrs1="group.dialog;url;interval[2000];title;noHeader/checkbox;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
+        data-vis-attrs1="group.dialog;url;interval[2000];title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
         >
     <%
         var styles = '';
@@ -2059,6 +2059,7 @@ vis.binds['jqui-mfd'].showVersion();
             <div <%= (el) -> vis.binds.basic.imgRefresh(el, data.attr('url'), data.attr('interval')) %>></div>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, true, true) %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr('autoclose')) %> />
     </div>
 </script>
 
@@ -2071,7 +2072,7 @@ vis.binds['jqui-mfd'].showVersion();
         data-vis-name="Cam/Snapshot - Dialog"
         data-vis-attrs="oid;alt;text;asButton[true]/checkbox;iconColor/color;"
         data-vis-attrs0="group.icon;icon/image;invert_icon/checkbox;icon_interval;"
-        data-vis-attrs1="group.dialog;url;interval[2000];title;noHeader/checkbox;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
+        data-vis-attrs1="group.dialog;url;interval[2000];title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
         >
     <%
         var styles = '';
@@ -2095,6 +2096,7 @@ vis.binds['jqui-mfd'].showVersion();
             <div <%= (el) -> vis.binds.basic.imgRefresh(el, vis.states.attr(data.oid + '.val' ) , data.attr('interval')) %>></div>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, true, true) %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr('autoclose')) %> />
     </div>
 </script>
 
@@ -2132,6 +2134,7 @@ vis.binds['jqui-mfd'].showVersion();
             </div>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, false, false, html) %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr('autoclose')) %> />
     </div>
 </script>
 
@@ -2144,7 +2147,7 @@ vis.binds['jqui-mfd'].showVersion();
         data-vis-name="Cam/Video (img) - Dialog"
         data-vis-attrs="oid;alt;asButton[true]/checkbox;iconColor/color;"
         data-vis-attrs0="group.icon;icon/image;invert_icon/checkbox;icon_interval;"
-        data-vis-attrs1="group.dialog;url;title;noHeader/checkbox;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
+        data-vis-attrs1="group.dialog;url;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
         >
     <%
         var styles = '';
@@ -2170,6 +2173,7 @@ vis.binds['jqui-mfd'].showVersion();
             </div>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, false, false, html) %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr('autoclose')) %> />
     </div>
 </script>
 
@@ -2182,7 +2186,7 @@ vis.binds['jqui-mfd'].showVersion();
         data-vis-name="Cam/Video (html5) - Dialog"
         data-vis-attrs="alt;text;asButton[true]/checkbox;iconColor/color;use_object/checkbox;"
         data-vis-attrs0="group.icon;icon/image;invert_icon/checkbox;icon_interval;"
-        data-vis-attrs1="group.dialog;src_url;poster_url;title;noHeader/checkbox;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
+        data-vis-attrs1="group.dialog;src_url;poster_url;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
         >
     <%
         var styles = '';
@@ -2204,6 +2208,7 @@ vis.binds['jqui-mfd'].showVersion();
         <div style="overflow-y: hidden !important;" id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.attr('title') %>">
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, false, false, html) %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr('autoclose')) %> />
     </div>
 </script>
 
@@ -2216,7 +2221,7 @@ vis.binds['jqui-mfd'].showVersion();
         data-vis-name="Cam/Video (html5) - Dialog"
         data-vis-attrs="oid;alt;asButton[true]/checkbox;iconColor/color;use_object/checkbox;"
         data-vis-attrs0="group.icon;icon/image;invert_icon/checkbox;icon_interval;"
-        data-vis-attrs1="group.dialog;poster_url;title;noHeader/checkbox;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
+        data-vis-attrs1="group.dialog;poster_url;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;"
         >
     <%
         var styles = '';
@@ -2238,6 +2243,7 @@ vis.binds['jqui-mfd'].showVersion();
         <div style="overflow-y: hidden !important;" id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.attr('title') %>">
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, false, false, html) %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr('autoclose')) %> />
     </div>
 </script>
 
@@ -2250,7 +2256,7 @@ vis.binds['jqui-mfd'].showVersion();
     data-vis-name="Cam/Video (Object) - Dialog"
     data-vis-attrs="alt;text;asButton[true]/checkbox;iconColor/color;"
     data-vis-attrs0="group.icon;icon/image;invert_icon/checkbox;icon_interval;"
-    data-vis-attrs1="group.dialog;src_url;qtsrc_url;title;noHeader/checkbox;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;type_application[video~quicktime]/auto,video~mpeg,video~mp4,video~ogg,video~quicktime,video~webm,video~x-ms-wmv,video~x-flv;plugin;autoplay[true]"
+    data-vis-attrs1="group.dialog;src_url;qtsrc_url;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[640];dialog_height[480];dialog_top;dialog_left;overflowX/nselect,,visible,hidden,scroll,auto,initial,inherit;overflowY/nselect,,visible,hidden,scroll,auto,initial,inherit;type_application[video~quicktime]/auto,video~mpeg,video~mp4,video~ogg,video~quicktime,video~webm,video~x-ms-wmv,video~x-flv;plugin;autoplay[true]"
     >
     <%
         var styles = '';
@@ -2272,5 +2278,6 @@ vis.binds['jqui-mfd'].showVersion();
         <div style="overflow-y: hidden !important;" id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.attr('title') %>">
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, false, false, html) %> />
+        <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr('autoclose')) %> />
     </div>
 </script>

@@ -12,6 +12,9 @@ jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI i
 ![Screenshot](img/Demo2.png)
 
 ## Changelog
+### 1.0.6 (2016-11-24)
+- (bluefox) Add to all dialogs autoclose
+
 ### 1.0.5 (2016-09-13)
 - (bluefox) add blind widget
 
