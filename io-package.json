@@ -1,9 +1,14 @@
 {
     "common": {
         "name":                     "vis-jqui-mfd",
-        "version": "1.0.6",
+        "version": "1.0.7",
 		"news": {
-			"1.0.6": {
+            "1.0.7": {
+                "en": "Fix size of lamp-off-svg",
+                "de": "Größe der Lampe-AUs-SVG-Grafik korrigiert",
+                "ru": "Fix size of lamp-off-svg"
+            },
+            "1.0.6": {
                 "en": "Add to all dialogs autoclose",
                 "de": "Autoclose für alle Dialogen hinzugefügt",
                 "ru": "Добавлено автозакрытие для всех диалоговых окон"
