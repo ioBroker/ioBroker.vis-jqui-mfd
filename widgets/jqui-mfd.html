@@ -756,9 +756,9 @@ vis.binds['jqui-mfd'].showVersion();
 
                 %>
                 <input type="radio" id="<%= this.data.attr('wid') %>_radio0" name="<%= this.data.attr('wid') %>_radio" value="<%= !this.data.attr('invert_value') ? min : max                                           %>" checked="checked"/><label for="<%= this.data.attr('wid') %>_radio0"><%= _('closed') %></label>
-                <input type="radio" id="<%= this.data.attr('wid') %>_radio1" name="<%= this.data.attr('wid') %>_radio" value="<%= !this.data.attr('invert_value') ? min + (max - min) * 0.25 : min + (max - min) * 0.75 %>" checked="checked"/><label for="<%= this.data.attr('wid') %>_radio1">25%</label>
+                <input type="radio" id="<%= this.data.attr('wid') %>_radio1" name="<%= this.data.attr('wid') %>_radio" value="<%= !this.data.attr('invert_value') ? min + (max - min) * 0.25 : min + (max - min) * 0.75 %>" checked="checked"/><label for="<%= this.data.attr('wid') %>_radio1"><%= !this.data.attr('invert_value') ? '25%' : '75%' %></label>
                 <input type="radio" id="<%= this.data.attr('wid') %>_radio2" name="<%= this.data.attr('wid') %>_radio" value="<%=                                   min + (max - min) * 0.5                             %>" checked="checked"/><label for="<%= this.data.attr('wid') %>_radio2">50%</label>
-                <input type="radio" id="<%= this.data.attr('wid') %>_radio3" name="<%= this.data.attr('wid') %>_radio" value="<%= !this.data.attr('invert_value') ? min + (max - min) * 0.75 : min + (max - min) * 0.25 %>" checked="checked"/><label for="<%= this.data.attr('wid') %>_radio3">75%</label>
+                <input type="radio" id="<%= this.data.attr('wid') %>_radio3" name="<%= this.data.attr('wid') %>_radio" value="<%= !this.data.attr('invert_value') ? min + (max - min) * 0.75 : min + (max - min) * 0.25 %>" checked="checked"/><label for="<%= this.data.attr('wid') %>_radio3"><%= !this.data.attr('invert_value') ? '75%' : '25%' %></label>
                 <input type="radio" id="<%= this.data.attr('wid') %>_radio4" name="<%= this.data.attr('wid') %>_radio" value="<%= !this.data.attr('invert_value') ? max : min                                           %>"/><label for="<%= this.data.attr('wid') %>_radio4"><%= _('open') %></label>
             </div>
             <br/>
