@@ -12,6 +12,13 @@ jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI i
 ![Screenshot](img/Demo2.png)
 
 ## Changelog
+
+### 1.0.8 (2017-07-12)
+- (KNXBroker) Fix of ShutterDialog Labels
+
+### 1.0.7 (2017-05-14)
+- (bluefox/Apollon77) Fix size of lamp-off-svg
+
 ### 1.0.6 (2016-11-24)
 - (bluefox) Add to all dialogs autoclose
 

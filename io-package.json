@@ -1,11 +1,16 @@
 {
     "common": {
         "name":                     "vis-jqui-mfd",
-        "version": "1.0.7",
+        "version": "1.0.8",
 		"news": {
+            "1.0.8": {
+                "en": "Fix of ShutterDialog Labels",
+                "de": "Fix of ShutterDialog Labels",
+                "ru": "Fix of ShutterDialog Labels"
+            },
             "1.0.7": {
                 "en": "Fix size of lamp-off-svg",
-                "de": "Größe der Lampe-AUs-SVG-Grafik korrigiert",
+                "de": "Größe der Lampe-Aus-SVG-Grafik korrigiert",
                 "ru": "Fix size of lamp-off-svg"
             },
             "1.0.6": {
