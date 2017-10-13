@@ -12,6 +12,8 @@ jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI i
 ![Screenshot](img/Demo2.png)
 
 ## Changelog
+### 1.0.9 (2017-10-13)
+- (bluefox) Fix iframes
 
 ### 1.0.8 (2017-07-12)
 - (KNXBroker) Fix of ShutterDialog Labels

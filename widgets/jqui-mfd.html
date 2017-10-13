@@ -57,6 +57,7 @@
             "interval":     {"en": "Update interval(ms)",   "de": "Update-Intervall(ms)",   "ru": "Интервал обновления (мс)"},
             "group_icons":  {"en": "Icons",                 "de": "Symbole",                "ru": "Иконки"},
             "group_values": {"en": "Values",                "de": "Werte",                  "ru": "Значения"},
+            "icon_interval": {"en": "Update interval(ms)",        "de": "Updateintervall(ms)", "ru": "Интервал обновления (мс)"},
             "iconColor":    {"en": "Icon color",            "de": "Symbolfarbe",            "ru": "Цвет иконки"},
             "group_images": {"en": "Icons",                 "de": "Symbole",                "ru": "Картинки"},
             "group_colors": {"en": "Icon colors (SVG)",     "de": "Symbolfarben (SVG)",     "ru": "Цвета картинки (SVG)"},
@@ -2051,12 +2052,12 @@ vis.binds['jqui-mfd'].showVersion();
             <% } else { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
             <% } %>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, this.data.attr('icon'), data.attr('icon_interval')) %>></div>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
         </div>
         <div style="overflow-y: hidden !important;" id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.attr('title') %>">
             <img id="<%= this.data.wid %>_img" alt="<%= this.data.text %>" style="width:<%= this.data.dialog_width %>px; height:<%= this.data.dialog_height %>px; border:none;" src="<%= this.data.url %>"/>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, data.attr('url'), data.attr('interval')) %>></div>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('url'), refreshInterval: data.attr('interval')}, this.view) %>></div>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, true, true) %> />
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr('autoclose')) %> />
@@ -2079,7 +2080,6 @@ vis.binds['jqui-mfd'].showVersion();
         if (this.data.invert_icon === 'true' || this.data.invert_icon === true) {
             styles = 'filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);';
         }
-
     %>
     <div class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%== this.data.attr('class') %>" style="width: 76px; height: 76px;" id="<%= this.data.attr('wid') %>" <%= (el) -> this.data.attr('asButton') ? vis.binds.jqueryui.classes(el) : '' %>>
         <div id="<%= this.data.attr('wid') %>_body" class="vis-widget-body">
@@ -2088,12 +2088,12 @@ vis.binds['jqui-mfd'].showVersion();
             <% } else { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
             <% } %>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, this.data.attr('icon'), data.attr('icon_interval')) %>></div>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
         </div>
         <div style="overflow-y: hidden !important;" id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.attr('title') %>">
             <img id="<%= this.data.wid %>_img" alt="<%= this.data.text %>" style="width:<%= this.data.dialog_width %>px; height:<%= this.data.dialog_height %>px; border:none;" src="<%= vis.states.attr(this.data.oid + '.val' )  %>"/>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, vis.states.attr(data.oid + '.val' ) , data.attr('interval')) %>></div>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: vis.states.attr(data.oid + '.val'), refreshInterval: data.attr('interval')}, this.view) %>></div>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, true, true) %> />
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr('autoclose')) %> />
@@ -2124,13 +2124,13 @@ vis.binds['jqui-mfd'].showVersion();
             <% } else { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
             <% } %>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, this.data.attr('icon'), data.attr('icon_interval')) %>></div>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
         </div>
         <div>
             <div style="overflow-y: hidden !important;" id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.attr('title') %>">
             </div>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, data.attr('url'), null, true) %>>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('url'), refreshOnWakeUp: true}, this.view) %>>
             </div>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, false, false, html) %> />
@@ -2163,13 +2163,13 @@ vis.binds['jqui-mfd'].showVersion();
             <% } else { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
             <% } %>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, this.data.attr('icon'), data.attr('icon_interval')) %>></div>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
         </div>
         <div>
             <div style="overflow-y: hidden !important;" id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.attr('title') %>">
             </div>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, data.attr('url'), null, true) %>>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('url'), refreshOnWakeUp: true}, this.view) %>>
             </div>
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, false, false, html) %> />
@@ -2202,7 +2202,7 @@ vis.binds['jqui-mfd'].showVersion();
             <% } else { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
             <% } %>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, this.data.attr('icon'), data.attr('icon_interval')) %>></div>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
         </div>
         <div style="overflow-y: hidden !important;" id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.attr('title') %>">
@@ -2237,7 +2237,7 @@ vis.binds['jqui-mfd'].showVersion();
             <% } else { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
             <% } %>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, this.data.attr('icon'), data.attr('icon_interval')) %>></div>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
         </div>
         <div style="overflow-y: hidden !important;" id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.attr('title') %>">
@@ -2272,7 +2272,7 @@ vis.binds['jqui-mfd'].showVersion();
             <% } else { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
             <% } %>
-            <div <%= (el) -> vis.binds.basic.imgRefresh(el, this.data.attr('icon'), data.attr('icon_interval')) %>></div>
+            <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
         </div>
         <div style="overflow-y: hidden !important;" id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.attr('title') %>">

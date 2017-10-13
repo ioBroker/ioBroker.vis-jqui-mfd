@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "vis-jqui-mfd",
-        "version": "1.0.8",
+        "version": "1.0.9",
 		"news": {
+			"1.0.9": {
+                "en": "Fix iframes",
+                "de": "Korrigiere iframes",
+                "ru": "Поправлены iframes"
+            },
             "1.0.8": {
                 "en": "Fix of ShutterDialog Labels",
                 "de": "Fix of ShutterDialog Labels",
