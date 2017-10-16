@@ -1,9 +1,9 @@
 {
     "common": {
-        "name":                     "vis-jqui-mfd",
+        "name": "vis-jqui-mfd",
         "version": "1.0.9",
-		"news": {
-			"1.0.9": {
+        "news": {
+            "1.0.9": {
                 "en": "Fix iframes",
                 "de": "Korrigiere iframes",
                 "ru": "Поправлены iframes"
@@ -23,22 +23,22 @@
                 "de": "Autoclose für alle Dialogen hinzugefügt",
                 "ru": "Добавлено автозакрытие для всех диалоговых окон"
             },
-			"1.0.5": {
+            "1.0.5": {
                 "en": "add blind widget",
                 "de": "Markisen-Widget hinzugefügt",
                 "ru": "Добавлен виджет для маркизы"
             },
-			"1.0.4": {
+            "1.0.4": {
                 "en": "fix custom 10 dialog",
                 "de": "fix custom 10 dialog",
                 "ru": "fix custom 10 dialog"
             },
-			"1.0.3": {
+            "1.0.3": {
                 "en": "removed left over debugger statement",
                 "de": "removed left over debugger statement",
                 "ru": "removed left over debugger statement"
             },
-			"1.0.2": {
+            "1.0.2": {
                 "en": "implemented color support for each separate state of the jqui-mfd wigets",
                 "de": "implemented color support for each separate state of the jqui-mfd wigets",
                 "ru": "implemented color support for each separate state of the jqui-mfd wigets"
@@ -49,36 +49,48 @@
                 "ru": "increase default width of popup windows"
             }
         },
-        "title":                    "ioBroker Visualisation - jQuery-UI style Widgets",
+        "title": "ioBroker Visualisation - jQuery-UI style Widgets",
         "desc": {
-            "en":                   "jQuery-UI Widgets for ioBroker.vis with OpenAutomationProject icons",
-            "de":                   "jQuery-UI Widgets für ioBroker.vis mit OpenAutomationProject Bilder",
-            "ru":                   "jQuery-UI Widgets для ioBroker.vis с иконками OpenAutomationProject"
+            "en": "jQuery-UI Widgets for ioBroker.vis with OpenAutomationProject icons",
+            "de": "jQuery-UI Widgets für ioBroker.vis mit OpenAutomationProject Bilder",
+            "ru": "jQuery-UI Widgets для ioBroker.vis с иконками OpenAutomationProject"
         },
-        "platform":                 "Javascript/Node.js",
-        "loglevel":                 "info",
-        "icon":                     "jqui-mfd.png",
-        "enabled":                  true,
-        "mode":                     "once",
-        "extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.vis-jqui-mfd/master/admin/jqui-mfd.png",
-        "keywords":                 ["jqui-mfd", "vis", "GUI", "graphical", "scada"],
-        "readme":                   "https://github.com/ioBroker/ioBroker.vis-jqui-mfd/blob/master/README.md",
+        "platform": "Javascript/Node.js",
+        "loglevel": "info",
+        "icon": "jqui-mfd.png",
+        "enabled": true,
+        "mode": "once",
+        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.vis-jqui-mfd/master/admin/jqui-mfd.png",
+        "keywords": [
+            "jqui-mfd",
+            "vis",
+            "GUI",
+            "graphical",
+            "scada"
+        ],
+        "readme": "https://github.com/ioBroker/ioBroker.vis-jqui-mfd/blob/master/README.md",
         "authors": [
             "hobbyquaker <hq@ccu.io>",
-			"bluefox <dogafox@gmail.com>"
+            "bluefox <dogafox@gmail.com>"
         ],
-        "localLink":                "%web_protocol%://%ip%:%web_port%/vis/edit.html",
-        "license":                  "MIT",
-        "dependencies":             ["vis"],
-        "onlyWWW":                  true,
-        "singleton":                true,
-        "type":                     "vis",
-		"noConfig":                 true,
-		"restartAdapters":          ["vis"]
+        "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+        "license": "MIT",
+        "dependencies": [
+            "vis"
+        ],
+        "onlyWWW": true,
+        "singleton": true,
+        "type": "visualization-widgets",
+        "noConfig": true,
+        "restartAdapters": [
+            "vis"
+        ]
     },
     "native": {
-        "dependencies":          ["basic", "jqui"]
+        "dependencies": [
+            "basic",
+            "jqui"
+        ]
     },
-    "instanceObjects": [
-    ]
+    "instanceObjects": []
 }
