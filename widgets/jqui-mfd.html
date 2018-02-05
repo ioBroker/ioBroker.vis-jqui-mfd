@@ -922,17 +922,17 @@ vis.binds['jqui-mfd'].showVersion();
         data-vis-prev='<div id="prev_tplMfdHeating" style="position: relative; text-align: initial;padding: 4px"><div class="vis-widget_prev ui-widget ui-button ui-corner-all ui-state-default " style="width: 70px; height: 70px;"> <div class="vis-widget-prev-body" style="width:100%; height:100%"> <img style="filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);" src="widgets/jqui-mfd/img/sani_heating_temp.png" width="100%"> </div></div>'
         data-vis-type="ctrl,heating,dialog"
         data-vis-name="ctrl - Heating + jqui Dialog"
-        data-vis-attrs="oid;oid-working;min[18];max[30];step[2];checkboxDisplay[Bild]/select,Bild,Text;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;"
+        data-vis-attrs="oid;oid-working;min[18];max[30];step[2];checkboxDisplay[image]/select,image,text;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;"
         data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[600];dialog_height[200];"
         >
-    <div data-oid="<%= this.data.attr('oid') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="<%= this.data.attr('checkboxDisplay') == 'Bild' ? 'width:76px; height:76px; ' : '' %>position:absolute" >
+    <div data-oid="<%= this.data.attr('oid') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="<%= this.data.attr('checkboxDisplay') == 'image' ? 'width:76px; height:76px; ' : '' %>position:absolute" >
     <div id="<%= this.data.attr('wid') %>_body" class="vis-widget-body" style="width:100%; height:100%">
         <%			
         var styles = '';
         if (this.data.invert_icon === 'true' || this.data.invert_icon === true) {
             styles = 'filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);';
         }
-		if (this.data.attr('checkboxDisplay') == 'Bild') {
+		if (this.data.attr('checkboxDisplay') == 'image') {
 			if (this.data.attr('iconColor')) {
 			%>
 				<img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/sani_heating_temp.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
