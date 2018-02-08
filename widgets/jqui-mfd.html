@@ -105,7 +105,8 @@
             "iconColorOff": {"en": "Inactive Icon color",   "de": "Inaktive Symbolfarbe",   "ru": "Цвет не активной иконки"},
             "iconColorOn":  {"en": "Active Icon color",     "de": "Aktive Symbolfarbe",     "ru": "Цвет активной иконки"},
             "show_value":   {"en": "Show value",            "de": "Wert zeigen",            "ru": "Показывать значение"},
-            "units":        {"en": "Units",                 "de": "Einheit",                "ru": "Единицы измерения"}
+            "units":        {"en": "Units",                 "de": "Einheit",                "ru": "Единицы измерения"},
+            "roundnumber":  {"en": "Decimal Place",         "de": "Nachkommastellen",       "ru": "Decimal Place"}
         });
     }
 
@@ -922,7 +923,7 @@ vis.binds['jqui-mfd'].showVersion();
         data-vis-prev='<div id="prev_tplMfdHeating" style="position: relative; text-align: initial;padding: 4px"><div class="vis-widget_prev ui-widget ui-button ui-corner-all ui-state-default " style="width: 70px; height: 70px;"> <div class="vis-widget-prev-body" style="width:100%; height:100%"> <img style="filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);" src="widgets/jqui-mfd/img/sani_heating_temp.png" width="100%"> </div></div>'
         data-vis-type="ctrl,heating,dialog"
         data-vis-name="ctrl - Heating + jqui Dialog"
-        data-vis-attrs="oid;oid-working;min[18];max[30];step[2];checkboxDisplay[image]/select,image,text;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;"
+        data-vis-attrs="oid;oid-working;min[18];max[30];step[2];roundnumber[0];checkboxDisplay[image]/select,image,text;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;"
         data-vis-attrs0="group.dialog;title;noHeader/checkbox;autoclose/slider,0,30000,100;modal/checkbox;dialog_width[600];dialog_height[200];"
         >
     <div data-oid="<%= this.data.attr('oid') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="<%= this.data.attr('checkboxDisplay') == 'image' ? 'width:76px; height:76px; ' : '' %>position:absolute" >
@@ -940,7 +941,8 @@ vis.binds['jqui-mfd'].showVersion();
 				<img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/sani_heating_temp.png"/>
 			<% } %>
 		<% } else { %>
-			<span class="actTemp"><%= (parseFloat(vis.states.attr(this.data.oid + '.val'))).toFixed(1) %> °C</span>
+			<% var dec = (this.data.attr('roundnumber') !== undefined || this.data.attr('roundnumber') >= 0) ? this.data.attr('roundnumber') : 0; %>
+			<span class="actTemp"><%= (parseFloat(vis.states.attr(this.data.oid + '.val'))).toFixed(dec) %> °C</span>
 		<% } %>	
     </div>
     <div id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.title || this.data.attr('oid') %>" style="padding-left:20px;">
@@ -949,6 +951,8 @@ vis.binds['jqui-mfd'].showVersion();
 			var min  = (this.data.attr('min') !== undefined) ? this.data.attr('min') : 18;
 			var max  = (this.data.attr('max') !== undefined) ? this.data.attr('max') : 30;
 			var step = (this.data.attr('step') !== undefined) ? this.data.attr('step') : 2;
+			var dec	 = (this.data.attr('roundnumber') !== undefined || this.data.attr('roundnumber') >= 0) ? this.data.attr('roundnumber') : 0;
+			
 
 			if (typeof min  === 'string' && parseFloat(min).toString() == min) min = parseFloat(min);
 			if (typeof max  === 'string' && parseFloat(max).toString() == max) max = parseFloat(max);
@@ -962,7 +966,7 @@ vis.binds['jqui-mfd'].showVersion();
 				}
 			}
 			for (var i = 0; i < temparr.length; i++) { %>
-				<input type="radio" id="<%= this.data.attr('wid') %>_radio<%= i %>" name="<%= this.data.attr('wid') %>_radio" value="<%= temparr[i] %>" /><label for="<%= this.data.attr('wid') %>_radio<%= i %>"><%= temparr[i] %> °C</label>
+				<input type="radio" id="<%= this.data.attr('wid') %>_radio<%= i %>" name="<%= this.data.attr('wid') %>_radio" value="<%= parseFloat(temparr[i]).toFixed(dec) %>" /><label for="<%= this.data.attr('wid') %>_radio<%= i %>"><%= parseFloat(temparr[i]).toFixed(dec) %> °C</label>
 			<% } %>
         </div>
         <br/>
@@ -970,6 +974,7 @@ vis.binds['jqui-mfd'].showVersion();
 		var min  = (this.data.attr('min') !== undefined) ? this.data.attr('min') : 18;
 		var max  = (this.data.attr('max') !== undefined) ? this.data.attr('max') : 30;
 		var step = (this.data.attr('step') !== undefined) ? this.data.attr('step') : 2;
+		var dec	 = (this.data.attr('roundnumber') !== undefined || this.data.attr('roundnumber') >= 0) ? this.data.attr('roundnumber') : 0;
 
 		if (typeof min  === 'string' && parseFloat(min).toString() == min) min = parseFloat(min);
 		if (typeof max  === 'string' && parseFloat(max).toString() == max) max = parseFloat(max);
@@ -977,7 +982,7 @@ vis.binds['jqui-mfd'].showVersion();
 		%>
         <div class="sliderJQUI" style="width:90%" id="<%= this.data.attr('wid') %>_slider" data-oid="<%= this.data.attr('oid') %>" data-hm-wid="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.jqueryui.slider(el, {min: min, max: max,step: step}) %> />
             <br/>
-            <%= (parseFloat(vis.states.attr(this.data.oid + '.val'))).toFixed(1) %>°C
+            <%= (parseFloat(vis.states.attr(this.data.oid + '.val'))).toFixed(dec) %>°C
         </div>
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialog(el, data, true) %> />
         <div class="popup-helper" <%= (el) -> vis.binds.jqueryui.dialogAutoClose(el, data.attr('autoclose')) %> />
