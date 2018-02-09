@@ -1,5 +1,5 @@
 ![Logo](admin/jqui-mfd.png)
-ioBroker.vis-jqui-mfd
+# ioBroker.vis-jqui-mfd
 ============
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.vis-jqui-mfd.svg)](https://www.npmjs.com/package/iobroker.vis-jqui-mfd)
@@ -7,11 +7,14 @@ ioBroker.vis-jqui-mfd
 
 [![NPM](https://nodei.co/npm/iobroker.vis-jqui-mfd.png?downloads=true)](https://nodei.co/npm/iobroker.vis-jqui-mfd/)
 
-
+## Description
 jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI interface with icons from [OpenAutomationProject](https://github.com/OpenAutomationProject/knx-uf-iconset).
 ![Screenshot](img/Demo2.png)
 
 ## Changelog
+### 1.0.10 (2018-02-09)
+- (Bjoern3003) Heating widget was extended
+
 ### 1.0.9 (2017-10-13)
 - (bluefox) Fix iframes
 
@@ -47,5 +50,5 @@ jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI i
 - (bluefox) initial checkin
 
 ## License
- Copyright (c) 2013-2016 hobbyquaker https://github.com/hobbyquaker, bluefox https://github.com/GermanBluefox
+ Copyright (c) 2013-2018 hobbyquaker https://github.com/hobbyquaker, bluefox https://github.com/GermanBluefox
  MIT
