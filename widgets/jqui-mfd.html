@@ -1,9 +1,10 @@
 <!--
     ioBroker.vis JQuery widgets with MFD icons
 
-    version: "1.0.5"
+    version: "1.0.12"
 
-    Copyright 6'2014-2016 bluefox<dogafox@gmail.com>, hobbyquaker<hobbyquaker@ccu.io>
+    Copyright 6'2014-2018 bluefox<dogafox@gmail.com>,
+                     2014 hobbyquaker<hobbyquaker@ccu.io>
 
 -->
  <style type="text/css">
@@ -118,7 +119,13 @@
     });
 
 vis.binds['jqui-mfd'] = {
-    version: "1.0.5",
+    version: "1.0.12",
+    isNotEmpty: function (val) {
+        return val !== '' && val !== null && val !== undefined;
+    },
+    removeSvg: function (wid) {
+        $('#' + wid).find('svg').remove();
+    },
     showVersion: function () {
         if (vis.binds['jqui-mfd'].version) {
             console.log('Version vis-jqui-mfd: ' + vis.binds['jqui-mfd'].version);
@@ -197,7 +204,7 @@ vis.binds['jqui-mfd'].showVersion();
                imageColor = this.data.attr('iconColor0');
             }
 
-            if (imageColor == null) {
+            if (!vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
                imageColor = this.data.attr('iconColor');
             }
 
@@ -207,7 +214,7 @@ vis.binds['jqui-mfd'].showVersion();
             <%
                } else {
             %>
-                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png"/>
+                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
         </div>
     </div>
@@ -280,17 +287,17 @@ vis.binds['jqui-mfd'].showVersion();
                imageColor = this.data.attr('iconColor0');
             }
 
-            if (imageColor == null) {
+            if (!vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
                imageColor = this.data.attr('iconColor');
             }
 
-            if (imageColor) {
+            if (vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
             %>
                 <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
             <%
                } else {
             %>
-                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png"/>
+                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
         </div>
     </div>
@@ -324,13 +331,13 @@ vis.binds['jqui-mfd'].showVersion();
                 imageColor = this.data.attr('iconColorOff');
             }
 
-            if (imageColor) {
+            if (vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
             %>
                 <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
             <%
                } else {
             %>
-                <img style="<%= styles %>" width="100%" src="<%= image %>"/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
         </div>
         <div id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.title || this.data.attr('oid') %>">
@@ -424,17 +431,17 @@ vis.binds['jqui-mfd'].showVersion();
                imageColor = this.data.attr('iconColor0');
             }
 
-            if (imageColor == null) {
+            if (!vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
                imageColor = this.data.attr('iconColor');
             }
 
-            if (imageColor) {
+            if (vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
             %>
                 <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
             <%
                } else {
             %>
-                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png"/>
+                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
         </div>
         <div id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.title || this.data.attr('oid') %>" style="padding-left:20px;">
@@ -502,18 +509,18 @@ vis.binds['jqui-mfd'].showVersion();
             }
 
             if (val != min) {
-                if (this.data.attr('iconColor_on')) {
+                if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor_on'))) {
             %>
                     <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_on')  ? this.data.attr('icon_on')  : 'widgets/jqui-mfd/img/message_socket_on.svg'  %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor_on')) %>/>
             <%  } else { %>
-                    <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_on') ? this.data.attr('icon_on') : 'widgets/jqui-mfd/img/message_socket_on.png' %>"/>
+                    <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_on') ? this.data.attr('icon_on') : 'widgets/jqui-mfd/img/message_socket_on.png' %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <%  }
             } else {
-                if (this.data.attr('iconColor_off')) {
+                if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor_off'))) {
             %>
                     <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_off')  ? this.data.attr('icon_off')  : 'widgets/jqui-mfd/img/message_socket_off.svg' %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor_off')) %>/>
             <%  } else { %>
-                    <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_off') ? this.data.attr('icon_off') : 'widgets/jqui-mfd/img/message_socket_off.png' %>"/>
+                    <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_off') ? this.data.attr('icon_off') : 'widgets/jqui-mfd/img/message_socket_off.png' %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <%  }
             } %>
         </div>
@@ -578,18 +585,18 @@ vis.binds['jqui-mfd'].showVersion();
             }
 
             if (val != min) {
-                if (this.data.attr('iconColor_on')) {
+                if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor_on'))) {
             %>
                     <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_on')  ? this.data.attr('icon_on')  : 'widgets/jqui-mfd/img/message_socket_on.svg'  %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor_on')) %>/>
             <%  } else { %>
-                    <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_on') ? this.data.attr('icon_on') : 'widgets/jqui-mfd/img/message_socket_on.png' %>"/>
+                    <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_on') ? this.data.attr('icon_on') : 'widgets/jqui-mfd/img/message_socket_on.png' %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <%  }
             } else {
-                if (this.data.attr('iconColor_off')) {
+                if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor_off'))) {
             %>
                     <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_off')  ? this.data.attr('icon_off')  : 'widgets/jqui-mfd/img/message_socket_off.svg' %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor_off')) %>/>
             <%  } else { %>
-                    <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_off') ? this.data.attr('icon_off') : 'widgets/jqui-mfd/img/message_socket_off.png' %>"/>
+                    <img style="<%= styles %>" width="100%" src="<%= this.data.attr('icon_off') ? this.data.attr('icon_off') : 'widgets/jqui-mfd/img/message_socket_off.png' %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <%  }
             } %>
         </div>
@@ -658,15 +665,15 @@ vis.binds['jqui-mfd'].showVersion();
                 imageColor = this.data.attr('iconColor0');
             }
 
-            if (!imageColor) {
+            if (!vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
                imageColor = this.data.attr('iconColor');
             }
 
-            if (imageColor) {
+            if (vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
             %>
                 <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
             <% } else { %>
-                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png"/>
+                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
     </div></div>
 </script>
@@ -736,15 +743,15 @@ vis.binds['jqui-mfd'].showVersion();
                 imageColor = this.data.attr('iconColor0');
             }
 
-            if (!imageColor) {
+            if (!vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
                 imageColor = this.data.attr('iconColor');
             }
 
-            if (imageColor) {
+            if (vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
             %>
                 <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
             <% } else { %>
-                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png"/>
+                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
         </div>
         <div id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.title || this.data.attr('oid') %>" style="padding-left: 20px;">
@@ -818,15 +825,15 @@ vis.binds['jqui-mfd'].showVersion();
                 imageColor = this.data.attr('iconColor0');
             }
 
-            if (!imageColor) {
+            if (!vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
                imageColor = this.data.attr('iconColor');
             }
 
-            if (imageColor) {
+            if (vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
             %>
                 <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
             <% } else { %>
-                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png"/>
+                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
     </div></div>
 </script>
@@ -878,15 +885,15 @@ vis.binds['jqui-mfd'].showVersion();
                 imageColor = this.data.attr('iconColor0');
             }
 
-            if (!imageColor) {
+            if (!vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
                 imageColor = this.data.attr('iconColor');
             }
 
-            if (imageColor) {
+            if (vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
             %>
                 <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
             <% } else { %>
-                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png"/>
+                <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
         </div>
         <div id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.title || this.data.attr('oid') %>" style="padding-left: 20px;">
@@ -938,7 +945,7 @@ vis.binds['jqui-mfd'].showVersion();
 			%>
 				<img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/sani_heating_temp.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
 			<% } else { %>
-				<img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/sani_heating_temp.png"/>
+				<img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/sani_heating_temp.png" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
 			<% } %>
 		<% } else { %>
 			<% var dec = (this.data.attr('roundnumber') !== undefined || this.data.attr('roundnumber') >= 0) ? this.data.attr('roundnumber') : 0; %>
@@ -959,8 +966,7 @@ vis.binds['jqui-mfd'].showVersion();
 			if (typeof step === 'string' && parseFloat(step).toString() == step) step = parseFloat(step);
 
 			var temparr = [];
-			if (step > 0 && min < max)
-			{
+			if (step > 0 && min < max) {
 				for (var i = min; i <= max; i += step) {
 					temparr.push(i);
 				}
@@ -1043,13 +1049,13 @@ vis.binds['jqui-mfd'].showVersion();
                 }
             }
 
-            if (imageColor) {
+            if (vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
             %>
-                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %> />
             <% 
             } else {
             %>
-                <img style="<%= styles %>" width="100%" src="<%= image %>"/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% 
             } 
             %>
@@ -1115,13 +1121,13 @@ vis.binds['jqui-mfd'].showVersion();
                 }
             }
 
-            if (imageColor) {
+            if (vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
             %>
                 <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
             <% 
             } else {
             %>
-                <img style="<%= styles %>" width="100%" src="<%= image %>"/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% 
             } 
             %>
@@ -1192,7 +1198,7 @@ vis.binds['jqui-mfd'].showVersion();
             <% 
             } else {
             %>
-                <img style="<%= styles %>" width="100%" src="<%= image %>"/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% 
             } 
             %>
@@ -1258,7 +1264,7 @@ vis.binds['jqui-mfd'].showVersion();
             <% 
             } else {
             %>
-                <img style="<%= styles %>" width="100%" src="<%= image %>"/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% 
             } 
             %>
@@ -1330,7 +1336,7 @@ vis.binds['jqui-mfd'].showVersion();
             <% 
             } else {
             %>
-                <img style="<%= styles %>" width="100%" src="<%= image %>"/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% 
             } 
             %>
@@ -1407,7 +1413,7 @@ vis.binds['jqui-mfd'].showVersion();
         if (imageColor) { %>
             <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
         <% } else { %>
-            <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png"/>
+            <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
         <% } %>
     </div></div>
 </script>
@@ -1483,7 +1489,7 @@ vis.binds['jqui-mfd'].showVersion();
         if (imageColor) { %>
             <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.svg" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
         <% } else { %>
-            <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png"/>
+            <img style="<%= styles %>" width="100%" src="widgets/jqui-mfd/img/<%= image %>.png" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
         <% } %>
     </div>
     <div id="<%= this.data.attr('wid') %>_dialog" class="<%= this.data.attr('wid') %>_dialog vis-widget-dialog" title="<%== this.data.title || this.data.attr('oid') %>" style="padding-left: 20px;">
@@ -1545,84 +1551,84 @@ vis.binds['jqui-mfd'].showVersion();
         var image = null;
         var imageColor = null;
 
-        if (this.data.attr('iconValue0') && this.data.attr('iconValue0') == str) {
-            imageColor = this.data.attr('iconColor0') ? this.data.attr('iconColor0') : this.data.attr('iconColor');
+        if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue0')) && this.data.attr('iconValue0') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor0')) ? this.data.attr('iconColor0') : this.data.attr('iconColor');
             image = this.data.attr('icon0');
-        } else if (this.data.attr('iconValue1') && this.data.attr('iconValue1') == str) {
-            imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue1')) && this.data.attr('iconValue1') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor1')) ? this.data.attr('iconColor1') : this.data.attr('iconColor');
             image = this.data.attr('icon1');
-        } else if (this.data.attr('iconValue2') && this.data.attr('iconValue2') == str) {
-            imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue2')) && this.data.attr('iconValue2') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor2')) ? this.data.attr('iconColor2') : this.data.attr('iconColor');
             image = this.data.attr('icon2');
-        } else if (this.data.attr('iconValue3') && this.data.attr('iconValue3') == str) {
-            imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue3')) && this.data.attr('iconValue3') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor3')) ? this.data.attr('iconColor3') : this.data.attr('iconColor');
             image = this.data.attr('icon3');
-        } else if (this.data.attr('iconValue4') && this.data.attr('iconValue4') == str) {
-            imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue4')) && this.data.attr('iconValue4') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor4')) ? this.data.attr('iconColor4') : this.data.attr('iconColor');
             image = this.data.attr('icon4');
-        } else if (this.data.attr('iconValue5') && this.data.attr('iconValue5') == str) {
-            imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue5')) && this.data.attr('iconValue5') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor5')) ? this.data.attr('iconColor5') : this.data.attr('iconColor');
             image = this.data.attr('icon5');
-        } else if (this.data.attr('iconValue6') && this.data.attr('iconValue6') == str) {
-            imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue6')) && this.data.attr('iconValue6') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor6')) ? this.data.attr('iconColor6') : this.data.attr('iconColor');
             image = this.data.attr('icon6');
-        } else if (this.data.attr('iconValue7') && this.data.attr('iconValue7') == str) {
-            imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue7')) && this.data.attr('iconValue7') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor7')) ? this.data.attr('iconColor7') : this.data.attr('iconColor');
             image = this.data.attr('icon7');
-        } else if (this.data.attr('iconValue8') && this.data.attr('iconValue8') == str) {
-            imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue8')) && this.data.attr('iconValue8') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor8')) ? this.data.attr('iconColor8') : this.data.attr('iconColor');
             image = this.data.attr('icon8');
-        } else if (this.data.attr('iconValue9') && this.data.attr('iconValue9') == str) {
-            imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue9')) && this.data.attr('iconValue9') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor9')) ? this.data.attr('iconColor9') : this.data.attr('iconColor');
             image = this.data.attr('icon9');
-        } else if (this.data.attr('iconValue10') && this.data.attr('iconValue10') == str) {
-            imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue10')) && this.data.attr('iconValue10') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor10')) ? this.data.attr('iconColor10') : this.data.attr('iconColor');
             image = this.data.attr('icon10');
         }
 
         if (!image && !imageColor) {
             if (val >= max) {
-                imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor10')) ? this.data.attr('iconColor10') : this.data.attr('iconColor');
                 image = this.data.attr('icon10');
             } else if (val >= min + (max - min) * 0.9) {
-                imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor9')) ? this.data.attr('iconColor9') : this.data.attr('iconColor');
                 image = this.data.attr('icon9');
             } else if (val >= min + (max - min) * 0.8) {
-                imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor8')) ? this.data.attr('iconColor8') : this.data.attr('iconColor');
                 image = this.data.attr('icon8');
             } else if (val >= min + (max - min) * 0.7) {
-                imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor7')) ? this.data.attr('iconColor7') : this.data.attr('iconColor');
                 image = this.data.attr('icon7');
             } else if (val >= min + (max - min) * 0.6) {
-                imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor6')) ? this.data.attr('iconColor6') : this.data.attr('iconColor');
                 image = this.data.attr('icon6');
             } else if (val >= min + (max - min) * 0.5) {
-                imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor5')) ? this.data.attr('iconColor5') : this.data.attr('iconColor');
                 image = this.data.attr('icon5');
             } else if (val >= min + (max - min) * 0.4) {
-                imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor4')) ? this.data.attr('iconColor4') : this.data.attr('iconColor');
                 image = this.data.attr('icon4');
             } else if (val >= min + (max - min) * 0.3) {
-                imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor3')) ? this.data.attr('iconColor3') : this.data.attr('iconColor');
                 image = this.data.attr('icon3');
             } else if (val >= min + (max - min) * 0.2) {
-                imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor2')) ? this.data.attr('iconColor2') : this.data.attr('iconColor');
                 image = this.data.attr('icon2');
             } else if (val >= min + (max - min) * 0.1) {
-                imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor1')) ? this.data.attr('iconColor1') : this.data.attr('iconColor');
                 image = this.data.attr('icon1');
             } else {
-                imageColor = this.data.attr('iconColor0') ? this.data.attr('iconColor0') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor0')) ? this.data.attr('iconColor0') : this.data.attr('iconColor');
                 image = this.data.attr('icon0');
             }
         }
 
-        if (image) {
-            if (imageColor) {
+        if (vis.binds['jqui-mfd'].isNotEmpty(image)) {
+            if (vis.binds['jqui-mfd'].isNotEmpty(imageColor)) {
             %>
                 <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
             <% } else { %>
-                <img style="<%= styles %>" width="100%" src="<%= image %>"/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } 
         } 
     %>
@@ -1664,74 +1670,74 @@ vis.binds['jqui-mfd'].showVersion();
         var image = null;
         var imageColor = null;
 
-        if (this.data.attr('iconValue0') && this.data.attr('iconValue0') == str) {
-            imageColor = this.data.attr('iconColor0') ? this.data.attr('iconColor0') : this.data.attr('iconColor');
+        if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue0')) && this.data.attr('iconValue0') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor0')) ? this.data.attr('iconColor0') : this.data.attr('iconColor');
             image = this.data.attr('icon0');
-        } else if (this.data.attr('iconValue1') && this.data.attr('iconValue1') == str) {
-            imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue1')) && this.data.attr('iconValue1') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor1')) ? this.data.attr('iconColor1') : this.data.attr('iconColor');
             image = this.data.attr('icon1');
-        } else if (this.data.attr('iconValue2') && this.data.attr('iconValue2') == str) {
-            imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue2')) && this.data.attr('iconValue2') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor2')) ? this.data.attr('iconColor2') : this.data.attr('iconColor');
             image = this.data.attr('icon2');
-        } else if (this.data.attr('iconValue3') && this.data.attr('iconValue3') == str) {
-            imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue3')) && this.data.attr('iconValue3') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor3')) ? this.data.attr('iconColor3') : this.data.attr('iconColor');
             image = this.data.attr('icon3');
-        } else if (this.data.attr('iconValue4') && this.data.attr('iconValue4') == str) {
-            imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue4')) && this.data.attr('iconValue4') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor4')) ? this.data.attr('iconColor4') : this.data.attr('iconColor');
             image = this.data.attr('icon4');
-        } else if (this.data.attr('iconValue5') && this.data.attr('iconValue5') == str) {
-            imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue5')) && this.data.attr('iconValue5') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor5')) ? this.data.attr('iconColor5') : this.data.attr('iconColor');
             image = this.data.attr('icon5');
-        } else if (this.data.attr('iconValue6') && this.data.attr('iconValue6') == str) {
-            imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue6')) && this.data.attr('iconValue6') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor6')) ? this.data.attr('iconColor6') : this.data.attr('iconColor');
             image = this.data.attr('icon6');
-        } else if (this.data.attr('iconValue7') && this.data.attr('iconValue7') == str) {
-            imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue7')) && this.data.attr('iconValue7') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor7')) ? this.data.attr('iconColor7') : this.data.attr('iconColor');
             image = this.data.attr('icon7');
-        } else if (this.data.attr('iconValue8') && this.data.attr('iconValue8') == str) {
-            imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue8')) && this.data.attr('iconValue8') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor8')) ? this.data.attr('iconColor8') : this.data.attr('iconColor');
             image = this.data.attr('icon8');
-        } else if (this.data.attr('iconValue9') && this.data.attr('iconValue9') == str) {
-            imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue9')) && this.data.attr('iconValue9') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor9')) ? this.data.attr('iconColor9') : this.data.attr('iconColor');
             image = this.data.attr('icon9');
-        } else if (this.data.attr('iconValue10') && this.data.attr('iconValue10') == str) {
-            imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
+        } else if (vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconValue10')) && this.data.attr('iconValue10') == str) {
+            imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor10')) ? this.data.attr('iconColor10') : this.data.attr('iconColor');
             image = this.data.attr('icon10');
         }
 
         if (!image && !imageColor) {
             if (val >= max) {
-                imageColor = this.data.attr('iconColor10') ? this.data.attr('iconColor10') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor10')) ? this.data.attr('iconColor10') : this.data.attr('iconColor');
                 image = this.data.attr('icon10');
             } else if (val >= min + (max - min) * 0.9) {
-                imageColor = this.data.attr('iconColor9') ? this.data.attr('iconColor9') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor9')) ? this.data.attr('iconColor9') : this.data.attr('iconColor');
                 image = this.data.attr('icon9');
             } else if (val >= min + (max - min) * 0.8) {
-                imageColor = this.data.attr('iconColor8') ? this.data.attr('iconColor8') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor8')) ? this.data.attr('iconColor8') : this.data.attr('iconColor');
                 image = this.data.attr('icon8');
             } else if (val >= min + (max - min) * 0.7) {
-                imageColor = this.data.attr('iconColor7') ? this.data.attr('iconColor7') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor7')) ? this.data.attr('iconColor7') : this.data.attr('iconColor');
                 image = this.data.attr('icon7');
             } else if (val >= min + (max - min) * 0.6) {
-                imageColor = this.data.attr('iconColor6') ? this.data.attr('iconColor6') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor6')) ? this.data.attr('iconColor6') : this.data.attr('iconColor');
                 image = this.data.attr('icon6');
             } else if (val >= min + (max - min) * 0.5) {
-                imageColor = this.data.attr('iconColor5') ? this.data.attr('iconColor5') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor5')) ? this.data.attr('iconColor5') : this.data.attr('iconColor');
                 image = this.data.attr('icon5');
             } else if (val >= min + (max - min) * 0.4) {
-                imageColor = this.data.attr('iconColor4') ? this.data.attr('iconColor4') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor4')) ? this.data.attr('iconColor4') : this.data.attr('iconColor');
                 image = this.data.attr('icon4');
             } else if (val >= min + (max - min) * 0.3) {
-                imageColor = this.data.attr('iconColor3') ? this.data.attr('iconColor3') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor3')) ? this.data.attr('iconColor3') : this.data.attr('iconColor');
                 image = this.data.attr('icon3');
             } else if (val >= min + (max - min) * 0.2) {
-                imageColor = this.data.attr('iconColor2') ? this.data.attr('iconColor2') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor2')) ? this.data.attr('iconColor2') : this.data.attr('iconColor');
                 image = this.data.attr('icon2');
             } else if (val >= min + (max - min) * 0.1) {
-                imageColor = this.data.attr('iconColor1') ? this.data.attr('iconColor1') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor1')) ? this.data.attr('iconColor1') : this.data.attr('iconColor');
                 image = this.data.attr('icon1');
             } else {
-                imageColor = this.data.attr('iconColor0') ? this.data.attr('iconColor0') : this.data.attr('iconColor');
+                imageColor = vis.binds['jqui-mfd'].isNotEmpty(this.data.attr('iconColor0')) ? this.data.attr('iconColor0') : this.data.attr('iconColor');
                 image = this.data.attr('icon0');
             }
         }
@@ -1741,7 +1747,7 @@ vis.binds['jqui-mfd'].showVersion();
             %>
                 <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, imageColor) %>/>
             <% } else { %>
-                <img style="<%= styles %>" width="100%" src="<%= image %>"/>
+                <img style="<%= styles %>" width="100%" src="<%= image %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } 
         } 
     %>
@@ -2079,7 +2085,7 @@ vis.binds['jqui-mfd'].showVersion();
             <% if (this.data.attr('iconColor')) { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.svg' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
             <% } else { %>
-                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
+                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
             <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
@@ -2115,7 +2121,7 @@ vis.binds['jqui-mfd'].showVersion();
            <% if (this.data.attr('iconColor')) { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.svg' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
             <% } else { %>
-                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
+                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
             <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
@@ -2151,7 +2157,7 @@ vis.binds['jqui-mfd'].showVersion();
            <% if (this.data.attr('iconColor')) { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.svg' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
             <% } else { %>
-                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
+                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
             <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
@@ -2190,7 +2196,7 @@ vis.binds['jqui-mfd'].showVersion();
            <% if (this.data.attr('iconColor')) { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.svg' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
             <% } else { %>
-                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
+                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
             <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
@@ -2229,7 +2235,7 @@ vis.binds['jqui-mfd'].showVersion();
            <% if (this.data.attr('iconColor')) { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.svg' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
             <% } else { %>
-                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
+                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
             <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
@@ -2264,7 +2270,7 @@ vis.binds['jqui-mfd'].showVersion();
            <% if (this.data.attr('iconColor')) { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.svg' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
             <% } else { %>
-                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
+                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
             <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>
@@ -2299,7 +2305,7 @@ vis.binds['jqui-mfd'].showVersion();
            <% if (this.data.attr('iconColor')) { %>
                 <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.svg' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds.jqueryui.setSvgColor(el, this.data.attr('iconColor')) %>/>
             <% } else { %>
-                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" />
+                <img src="<%= this.data.attr('icon') ? this.data.attr('icon') : 'widgets/jqui-mfd/img/it_camera.png' %>" style="<%= styles %> vertical-align:middle;height:100%;" alt="<%== this.data.attr('alt') %>" <%= (el) -> vis.binds['jqui-mfd'].removeSvg(this.data.attr('wid')) %>/>
             <% } %>
             <div <%= (el) -> vis.binds.basic.imgRefresh(el, {src: data.attr('icon'), refreshInterval: data.attr('icon_interval')}, this.view) %>></div>
             <%= this.data.attr('text') %>

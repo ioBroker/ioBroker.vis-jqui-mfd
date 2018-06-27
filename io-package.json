@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "vis-jqui-mfd",
-        "version": "1.0.11",
+        "version": "1.0.12",
         "news": {
+            "1.0.12": {
+                "en": "Custom10-Widget and Light-Widget are repaired if the icon color used",
+                "de": "Custom10-Widget und Light-Widget werden repariert, wenn die Symbolfarbe verwendet wird",
+                "ru": "Custom10-Widget и Light-Widget восстанавливаются, если используется цвет значка",
+                "pt": "Custom10-Widget e Light-Widget são reparados se a cor do ícone for usada",
+                "nl": "Custom10-Widget en Light-Widget worden gerepareerd als de gebruikte pictogramkleur",
+                "fr": "Custom10-Widget et Light-Widget sont réparés si la couleur de l'icône utilisée",
+                "it": "Custom10-Widget e Light-Widget vengono riparati se si utilizza il colore dell'icona",
+                "es": "Custom10-Widget y Light-Widget se reparan si el color del icono utilizado",
+                "pl": "Custom10-Widget i Light-Widget są naprawiane, jeśli używany jest kolor ikony"
+            },
             "1.0.11": {
                 "en": "The heating widget was extended",
                 "de": "Das Heizungs-Widget wurde erweitert",

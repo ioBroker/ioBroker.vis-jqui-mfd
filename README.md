@@ -12,6 +12,9 @@ jqui-mfd widget sets for ioBroker.vis. Widgets are styled as Windows jQuery UI i
 ![Screenshot](img/Demo2.png)
 
 ## Changelog
+### 1.0.12 (2018-06-27)
+- (bluefox) Custom10-Widget and Light-Widget are fixed if the icon color used
+
 ### 1.0.11 (2018-02-18)
 - (Bjoern3003) Heating widget was extended
 
