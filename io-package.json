@@ -1,8 +1,30 @@
 {
     "common": {
         "name": "vis-jqui-mfd",
-        "version": "1.0.9",
+        "version": "1.0.12",
         "news": {
+            "1.0.12": {
+                "en": "Custom10-Widget and Light-Widget are repaired if the icon color used",
+                "de": "Custom10-Widget und Light-Widget werden repariert, wenn die Symbolfarbe verwendet wird",
+                "ru": "Custom10-Widget и Light-Widget восстанавливаются, если используется цвет значка",
+                "pt": "Custom10-Widget e Light-Widget são reparados se a cor do ícone for usada",
+                "nl": "Custom10-Widget en Light-Widget worden gerepareerd als de gebruikte pictogramkleur",
+                "fr": "Custom10-Widget et Light-Widget sont réparés si la couleur de l'icône utilisée",
+                "it": "Custom10-Widget e Light-Widget vengono riparati se si utilizza il colore dell'icona",
+                "es": "Custom10-Widget y Light-Widget se reparan si el color del icono utilizado",
+                "pl": "Custom10-Widget i Light-Widget są naprawiane, jeśli używany jest kolor ikony"
+            },
+            "1.0.11": {
+                "en": "The heating widget was extended",
+                "de": "Das Heizungs-Widget wurde erweitert",
+                "ru": "Виджет отопления был расширен",
+                "pt": "O widget de aquecimento foi estendido",
+                "nl": "De verwarmingswidget is uitgebreid",
+                "fr": "Le widget de chauffage a été étendu",
+                "it": "Il widget di riscaldamento è stato esteso",
+                "es": "El widget de calentamiento se extendió",
+                "pl": "Widżet grzewczy został przedłużony"
+            },
             "1.0.9": {
                 "en": "Fix iframes",
                 "de": "Korrigiere iframes",
@@ -49,11 +71,28 @@
                 "ru": "increase default width of popup windows"
             }
         },
-        "title": "ioBroker Visualisation - jQuery-UI style Widgets",
+        "title": "jQuery-UI style Widgets",
+        "titleLang": {
+            "en": "jQuery-UI style Widgets",
+            "de": "jQuery-UI-Stil Widgets",
+            "ru": "Виджеты в стиле jQuery-UI",
+            "pt": "Widgets estilo jQuery-UI",
+            "nl": "jQuery-UI-stijl Widgets",
+            "fr": "Widgets de style jQuery-UI",
+            "it": "Widget di stile jQuery-UI",
+            "es": "Widgets de estilo jQuery-UI",
+            "pl": "Widżety w stylu jQuery-UI"
+        },
         "desc": {
             "en": "jQuery-UI Widgets for ioBroker.vis with OpenAutomationProject icons",
             "de": "jQuery-UI Widgets für ioBroker.vis mit OpenAutomationProject Bilder",
-            "ru": "jQuery-UI Widgets для ioBroker.vis с иконками OpenAutomationProject"
+            "ru": "jQuery-UI Widgets для ioBroker.vis с иконками OpenAutomationProject",
+            "pt": "Widgets jQuery-UI para ioBroker.vis com ícones OpenAutomationProject",
+            "nl": "jQuery-UI Widgets voor ioBroker.vis met OpenAutomationProject-pictogrammen",
+            "fr": "Widgets jQuery-UI pour ioBroker.vis avec des icônes OpenAutomationProject",
+            "it": "jQuery-UI Widget per ioBroker.vis con icone OpenAutomationProject",
+            "es": "jQuery-UI Widgets para ioBroker.vis con iconos de OpenAutomationProject",
+            "pl": "Widgety jQuery-UI dla ioBroker.vis z ikonami OpenAutomationProject"          
         },
         "platform": "Javascript/Node.js",
         "loglevel": "info",
@@ -65,6 +104,7 @@
             "jqui-mfd",
             "vis",
             "GUI",
+            "IoT",
             "graphical",
             "scada"
         ],
