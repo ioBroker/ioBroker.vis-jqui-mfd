@@ -2,7 +2,7 @@
 # ioBroker.vis-jqui-mfd
 ============
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.vis-jqui-mfd.svg)](https://www.npmjs.com/package/iobroker.vis-jqui-mfd)
+![Number of Installations](http://iobroker.live/badges/vis-jqui-mfd-installed.svg) ![Number of Installations](http://iobroker.live/badges/vis-jqui-mfd-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.vis-jqui-mfd.svg)](https://www.npmjs.com/package/iobroker.vis-jqui-mfd)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.vis-jqui-mfd.svg)](https://www.npmjs.com/package/iobroker.vis-jqui-mfd)
 
 [![NPM](https://nodei.co/npm/iobroker.vis-jqui-mfd.png?downloads=true)](https://nodei.co/npm/iobroker.vis-jqui-mfd/)
