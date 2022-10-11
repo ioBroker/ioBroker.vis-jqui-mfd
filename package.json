@@ -32,23 +32,30 @@
     "jqui-mfd GUI"
   ],
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-replace": "^1.0.1",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-jscs": "^3.0.1",
-    "grunt-http": "^2.2.0",
-    "mocha": "^4.1.0",
-    "chai": "^4.1.2"
+    "@alcalzone/release-script": "^3.5.9",
+    "@alcalzone/release-script-plugin-iobroker": "^3.5.9",
+    "@alcalzone/release-script-plugin-license": "^3.5.9",
+    "mocha": "^10.0.0",
+    "chai": "^4.3.6"
   },
   "bugs": {
     "url": "https://github.com/ioBroker/ioBroker.vis-jqui-mfd/issues"
   },
   "main": "widgets/jqui-mfd.html",
+  "files": [
+    "admin/",
+    "widgets/",
+    "img/",
+    "LICENSE",
+    "io-package.json"
+  ],
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha --exit"
+    "test": "node node_modules/mocha/bin/mocha --exit",
+    "release": "release-script",
+    "release-patch": "release-script patch --yes",
+    "release-minor": "release-script minor --yes",
+    "release-major": "release-script major --yes"
   },
   "license": "MIT",
-  "dependencies": {
-    "@iobroker/adapter-core": "^1.0.3"
-  }
+  "dependencies": {}
 }
