@@ -148,7 +148,7 @@ vis.binds['jqui-mfd'].showVersion();
         data-vis-name="Light/Dimmer"
         data-vis-attrs="oid;min;max;invert_icon/checkbox;asButton[true]/checkbox;iconColor/color;"
         data-vis-attrs0="group.colors;iconColor0/color;iconColor1/color;iconColor2/color;iconColor3/color;iconColor4/color;iconColor5/color;iconColor6/color;iconColor7/color;iconColor8/color;iconColor9/color;iconColor10/color;"
-        >
+>
     <div data-oid="<%= this.data.attr('oid') %>" class="vis-widget <%= this.data.attr('asButton') ? ' ui-widget ui-button ui-corner-all ui-state-default ui-state-active' : '' %> <%= this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:76px; height:76px; position:absolute" data-min="<%= this.data.attr('min') %>" data-max="<%= this.data.attr('max') %>" <%= (el) -> this.data.attr('asButton') ? vis.binds.jqueryui.active(el) : '' %> >
         <div class="vis-widget-body" <%= (el) -> vis.preloadImages(['widgets/jqui-mfd/img/light_light_dim_100.png','widgets/jqui-mfd/img/light_light_dim_90.png','widgets/jqui-mfd/img/light_light_dim_80.png','widgets/jqui-mfd/img/light_light_dim_70.png','widgets/jqui-mfd/img/light_light_dim_60.png','widgets/jqui-mfd/img/light_light_dim_50.png','widgets/jqui-mfd/img/light_light_dim_40.png','widgets/jqui-mfd/img/light_light_dim_30.png','widgets/jqui-mfd/img/light_light_dim_20.png','widgets/jqui-mfd/img/light_light_dim_10.png','widgets/jqui-mfd/img/light_light_dim.png']);  %>>
             <%
