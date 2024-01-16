@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-jqui-mfd",
-        "version": "1.0.12",
+        "version": "1.1.0",
         "news": {
             "1.0.12": {
                 "en": "Custom10-Widget and Light-Widget are repaired if the icon color used",
@@ -92,7 +92,7 @@
             "fr": "Widgets jQuery-UI pour ioBroker.vis avec des icônes OpenAutomationProject",
             "it": "jQuery-UI Widget per ioBroker.vis con icone OpenAutomationProject",
             "es": "jQuery-UI Widgets para ioBroker.vis con iconos de OpenAutomationProject",
-            "pl": "Widgety jQuery-UI dla ioBroker.vis z ikonami OpenAutomationProject"          
+            "pl": "Widgety jQuery-UI dla ioBroker.vis z ikonami OpenAutomationProject"
         },
         "platform": "Javascript/Node.js",
         "loglevel": "info",
@@ -124,7 +124,8 @@
         "noConfig": true,
         "restartAdapters": [
             "vis"
-        ]
+        ],
+        "tier": 3
     },
     "native": {
         "dependencies": [
