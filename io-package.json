@@ -1,118 +1,142 @@
 {
-    "common": {
-        "name": "vis-jqui-mfd",
-        "version": "1.1.1",
-        "news": {
-            "1.1.1": {
-                "en": "Make it compatible with ioBroker.vis 2.0",
-                "de": "Kompatibel mit ioBroker.vis 2.0",
-                "ru": "Сделайте его совместимым с ioBroker.vis 2.0",
-                "pt": "Tornar compatível com ioBroker.vis 2.0",
-                "nl": "Maak het compatibel met ioBroker.vis 2.0",
-                "fr": "La rendre compatible avec ioBroker.vis 2.0",
-                "it": "Renderlo compatibile con ioBroker.vis 2.0",
-                "es": "Hazlo compatible con ioBroker.vis 2.0",
-                "pl": "Sprawdzić zgodność z joBroker.vis 2.0",
-                "uk": "Зробіть сумісність з ioBroker.vis 2.0",
-                "zh-cn": "使其与ioBroker.vis 2.0兼容"
-            },
-            "1.0.12": {
-                "en": "Custom10-Widget and Light-Widget are repaired if the icon color used",
-                "de": "Custom10-Widget und Light-Widget werden repariert, wenn die Symbolfarbe verwendet wird",
-                "ru": "Custom10-Widget и Light-Widget восстанавливаются, если используется цвет значка",
-                "pt": "Custom10-Widget e Light-Widget são reparados se a cor do ícone for usada",
-                "nl": "Custom10-Widget en Light-Widget worden gerepareerd als de gebruikte pictogramkleur",
-                "fr": "Custom10-Widget et Light-Widget sont réparés si la couleur de l'icône utilisée",
-                "it": "Custom10-Widget e Light-Widget vengono riparati se si utilizza il colore dell'icona",
-                "es": "Custom10-Widget y Light-Widget se reparan si el color del icono utilizado",
-                "pl": "Custom10-Widget i Light-Widget są naprawiane, jeśli używany jest kolor ikony"
-            },
-            "1.0.11": {
-                "en": "The heating widget was extended",
-                "de": "Das Heizungs-Widget wurde erweitert",
-                "ru": "Виджет отопления был расширен",
-                "pt": "O widget de aquecimento foi estendido",
-                "nl": "De verwarmingswidget is uitgebreid",
-                "fr": "Le widget de chauffage a été étendu",
-                "it": "Il widget di riscaldamento è stato esteso",
-                "es": "El widget de calentamiento se extendió",
-                "pl": "Widżet grzewczy został przedłużony"
-            },
-            "1.0.9": {
-                "en": "Fix iframes",
-                "de": "Korrigiere iframes",
-                "ru": "Поправлены iframes"
-            },
-            "1.0.8": {
-                "en": "Fix of ShutterDialog Labels",
-                "de": "Fix of ShutterDialog Labels",
-                "ru": "Fix of ShutterDialog Labels"
-            },
-            "1.0.7": {
-                "en": "Fix size of lamp-off-svg",
-                "de": "Größe der Lampe-Aus-SVG-Grafik korrigiert",
-                "ru": "Fix size of lamp-off-svg"
-            },
-            "1.0.6": {
-                "en": "Add to all dialogs autoclose",
-                "de": "Autoclose für alle Dialogen hinzugefügt",
-                "ru": "Добавлено автозакрытие для всех диалоговых окон"
-            }
-        },
-        "titleLang": {
-            "en": "jQuery-UI style Widgets",
-            "de": "jQuery-UI-Stil Widgets",
-            "ru": "Виджеты в стиле jQuery-UI",
-            "pt": "Widgets estilo jQuery-UI",
-            "nl": "jQuery-UI-stijl Widgets",
-            "fr": "Widgets de style jQuery-UI",
-            "it": "Widget di stile jQuery-UI",
-            "es": "Widgets de estilo jQuery-UI",
-            "pl": "Widżety w stylu jQuery-UI",
-            "uk": "Віджети в стилі jQuery-UI",
-            "zh-cn": "jQuery-UI风格的小部件"
-        },
-        "desc": {
-            "en": "jQuery-UI Widgets for ioBroker.vis with OpenAutomationProject icons",
-            "de": "jQuery-UI Widgets für ioBroker.vis mit OpenAutomationProject Bilder",
-            "ru": "jQuery-UI Widgets для ioBroker.vis с иконками OpenAutomationProject",
-            "pt": "Widgets jQuery-UI para ioBroker.vis com ícones OpenAutomationProject",
-            "nl": "jQuery-UI Widgets voor ioBroker.vis met OpenAutomationProject-pictogrammen",
-            "fr": "Widgets jQuery-UI pour ioBroker.vis avec des icônes OpenAutomationProject",
-            "it": "jQuery-UI Widget per ioBroker.vis con icone OpenAutomationProject",
-            "es": "jQuery-UI Widgets para ioBroker.vis con iconos de OpenAutomationProject",
-            "uk": "jQuery-UI віджети для ioBroker.vis з іконками OpenAutomationProject",
-            "pl": "Widgety jQuery-UI dla ioBroker.vis z ikonami OpenAutomationProject"
-        },
-        "platform": "Javascript/Node.js",
-        "loglevel": "info",
-        "icon": "jqui-mfd.png",
-        "enabled": true,
-        "mode": "once",
-        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.vis-jqui-mfd/master/admin/jqui-mfd.png",
-        "keywords": ["jqui-mfd", "vis", "GUI", "IoT", "graphical", "scada"],
-        "readme": "https://github.com/ioBroker/ioBroker.vis-jqui-mfd/blob/master/README.md",
-        "authors": ["hobbyquaker <hq@ccu.io>", "bluefox <dogafox@gmail.com>"],
-        "licenseInformation": {
-            "license": "MIT",
-            "type": "free"
-        },
-        "adminUI": {
-            "config": "none"
-        },
-        "connectionType": "local",
-        "dataSource": "push",
-        "onlyWWW": true,
-        "singleton": true,
-        "type": "visualization-widgets",
-        "ifInstalledDependencies": {
-            "vis-2": ">=2.12.8"
-        },
-        "restartAdapters": ["vis-2", "vis"],
-        "tier": 3
+  "common": {
+    "name": "vis-jqui-mfd",
+    "version": "1.1.2",
+    "news": {
+      "1.1.2": {
+        "en": "Allowed installation with vis-2 without installing vis-1",
+        "de": "Erlaubte Installation mit vis-2 ohne Installation vis-1",
+        "ru": "Разрешенная установка с vis-2 без установки vis-1",
+        "pt": "Instalação permitida com vis-2 sem instalação vis-1",
+        "nl": "Toegestaan installatie met vis-2 zonder vis-1 te installeren",
+        "fr": "Installation autorisée avec vis-2 sans installation vis-1",
+        "it": "Installazione consentita con vis-2 senza installare vis-1",
+        "es": "Instalación permitida con vis-2 sin instalación vis-1",
+        "pl": "Dopuszczalna instalacja z vis-2 bez instalacji vis-1",
+        "uk": "Допускається установка з вісом-2 без установки вісь-1",
+        "zh-cn": "允许在不安装的情况下安装比对 - 2"
+      },
+      "1.1.1": {
+        "en": "Make it compatible with ioBroker.vis 2.0",
+        "de": "Kompatibel mit ioBroker.vis 2.0",
+        "ru": "Сделайте его совместимым с ioBroker.vis 2.0",
+        "pt": "Tornar compatível com ioBroker.vis 2.0",
+        "nl": "Maak het compatibel met ioBroker.vis 2.0",
+        "fr": "La rendre compatible avec ioBroker.vis 2.0",
+        "it": "Renderlo compatibile con ioBroker.vis 2.0",
+        "es": "Hazlo compatible con ioBroker.vis 2.0",
+        "pl": "Sprawdzić zgodność z joBroker.vis 2.0",
+        "uk": "Зробіть сумісність з ioBroker.vis 2.0",
+        "zh-cn": "使其与ioBroker.vis 2.0兼容"
+      },
+      "1.0.12": {
+        "en": "Custom10-Widget and Light-Widget are repaired if the icon color used",
+        "de": "Custom10-Widget und Light-Widget werden repariert, wenn die Symbolfarbe verwendet wird",
+        "ru": "Custom10-Widget и Light-Widget восстанавливаются, если используется цвет значка",
+        "pt": "Custom10-Widget e Light-Widget são reparados se a cor do ícone for usada",
+        "nl": "Custom10-Widget en Light-Widget worden gerepareerd als de gebruikte pictogramkleur",
+        "fr": "Custom10-Widget et Light-Widget sont réparés si la couleur de l'icône utilisée",
+        "it": "Custom10-Widget e Light-Widget vengono riparati se si utilizza il colore dell'icona",
+        "es": "Custom10-Widget y Light-Widget se reparan si el color del icono utilizado",
+        "pl": "Custom10-Widget i Light-Widget są naprawiane, jeśli używany jest kolor ikony"
+      },
+      "1.0.11": {
+        "en": "The heating widget was extended",
+        "de": "Das Heizungs-Widget wurde erweitert",
+        "ru": "Виджет отопления был расширен",
+        "pt": "O widget de aquecimento foi estendido",
+        "nl": "De verwarmingswidget is uitgebreid",
+        "fr": "Le widget de chauffage a été étendu",
+        "it": "Il widget di riscaldamento è stato esteso",
+        "es": "El widget de calentamiento se extendió",
+        "pl": "Widżet grzewczy został przedłużony"
+      },
+      "1.0.9": {
+        "en": "Fix iframes",
+        "de": "Korrigiere iframes",
+        "ru": "Поправлены iframes"
+      },
+      "1.0.8": {
+        "en": "Fix of ShutterDialog Labels",
+        "de": "Fix of ShutterDialog Labels",
+        "ru": "Fix of ShutterDialog Labels"
+      },
+      "1.0.7": {
+        "en": "Fix size of lamp-off-svg",
+        "de": "Größe der Lampe-Aus-SVG-Grafik korrigiert",
+        "ru": "Fix size of lamp-off-svg"
+      }
     },
-    "native": {
-        "dependencies": ["basic", "jqui"]
+    "titleLang": {
+      "en": "jQuery-UI style Widgets",
+      "de": "jQuery-UI-Stil Widgets",
+      "ru": "Виджеты в стиле jQuery-UI",
+      "pt": "Widgets estilo jQuery-UI",
+      "nl": "jQuery-UI-stijl Widgets",
+      "fr": "Widgets de style jQuery-UI",
+      "it": "Widget di stile jQuery-UI",
+      "es": "Widgets de estilo jQuery-UI",
+      "pl": "Widżety w stylu jQuery-UI",
+      "uk": "Віджети в стилі jQuery-UI",
+      "zh-cn": "jQuery-UI风格的小部件"
     },
-    "instanceObjects": []
+    "desc": {
+      "en": "jQuery-UI Widgets for ioBroker.vis with OpenAutomationProject icons",
+      "de": "jQuery-UI Widgets für ioBroker.vis mit OpenAutomationProject Bilder",
+      "ru": "jQuery-UI Widgets для ioBroker.vis с иконками OpenAutomationProject",
+      "pt": "Widgets jQuery-UI para ioBroker.vis com ícones OpenAutomationProject",
+      "nl": "jQuery-UI Widgets voor ioBroker.vis met OpenAutomationProject-pictogrammen",
+      "fr": "Widgets jQuery-UI pour ioBroker.vis avec des icônes OpenAutomationProject",
+      "it": "jQuery-UI Widget per ioBroker.vis con icone OpenAutomationProject",
+      "es": "jQuery-UI Widgets para ioBroker.vis con iconos de OpenAutomationProject",
+      "uk": "jQuery-UI віджети для ioBroker.vis з іконками OpenAutomationProject",
+      "pl": "Widgety jQuery-UI dla ioBroker.vis z ikonami OpenAutomationProject"
+    },
+    "platform": "Javascript/Node.js",
+    "loglevel": "info",
+    "icon": "jqui-mfd.png",
+    "enabled": true,
+    "mode": "once",
+    "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.vis-jqui-mfd/master/admin/jqui-mfd.png",
+    "keywords": [
+      "jqui-mfd",
+      "vis",
+      "GUI",
+      "IoT",
+      "graphical",
+      "scada"
+    ],
+    "readme": "https://github.com/ioBroker/ioBroker.vis-jqui-mfd/blob/master/README.md",
+    "authors": [
+      "hobbyquaker <hq@ccu.io>",
+      "bluefox <dogafox@gmail.com>"
+    ],
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
+    "adminUI": {
+      "config": "none"
+    },
+    "connectionType": "local",
+    "dataSource": "push",
+    "onlyWWW": true,
+    "singleton": true,
+    "type": "visualization-widgets",
+    "ifInstalledDependencies": {
+      "vis-2": ">=2.12.8"
+    },
+    "restartAdapters": [
+      "vis-2",
+      "vis"
+    ],
+    "tier": 3
+  },
+  "native": {
+    "dependencies": [
+      "basic",
+      "jqui"
+    ]
+  },
+  "instanceObjects": []
 }
