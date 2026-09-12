@@ -31,7 +31,7 @@ jobs:
         steps:
             - uses: ioBroker/testing-action-check@v1
               with:
-                  node-version: '22.x'
+                  node-version: '24.x'
 
     # Deploys the final package to NPM
     deploy:
@@ -53,5 +53,5 @@ jobs:
         steps:
             - uses: ioBroker/testing-action-deploy@v1
               with:
-                  node-version: '22.x'
+                  node-version: '24.x'
                   github-token: ${{ secrets.GITHUB_TOKEN }}
