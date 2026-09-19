@@ -1,0 +1,276 @@
+/*
+ * Styles of the jqui-mfd widgets for vis-2.
+ *
+ * In the vis-1 look the button itself is NOT styled here: it carries the classes `ui-widget ui-button ui-corner-all
+ * ui-state-default` like in vis-1, and the jQuery UI theme that vis-2 loads for the view draws it. With "vis-2 theme"
+ * (`.mfd-mui`) the button is drawn here, in the colours of the vis-2 theme passed in as CSS variables
+ * (`widgetVars()` in `Components/theme.ts`). Everything is scoped under `.mfd-rx`, so the vis-1 stylesheets, which
+ * vis-2 also loads, cannot collide.
+ *
+ * The dialog lies in `document.body`, outside the view and its jQuery UI theme, and follows the light / dark theme
+ * of vis-2 through the variables below; with "vis-2 theme" they are replaced by the colours of the theme
+ * (`dialogVars()`).
+ */
+
+.mfd-rx.mfd-body {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mfd-rx .mfd-icon {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* the heating with "Display: text" */
+.mfd-rx.mfd-body > .actTemp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------- "vis-2 theme" (mui) instead of jQuery UI */
+
+/* the shadow of the surface must not be cut by the `overflow: hidden` of `.vis-widget` */
+.vis-widget.mfd-mui {
+    overflow: visible;
+}
+
+.mfd-rx.mfd-body.mfd-mui {
+    border-radius: var(--mfd-radius);
+    color: var(--mfd-fg);
+    font-family: var(--mfd-font);
+    transition:
+        background-color 0.15s,
+        box-shadow 0.15s,
+        color 0.15s;
+}
+
+/* "Button rectangle": a raised surface of the theme, pressed it takes the primary colour */
+.mfd-rx.mfd-body.mfd-mui.mfd-surface {
+    background-color: var(--mfd-surface);
+    box-shadow: var(--mfd-shadow);
+}
+
+.mfd-rx.mfd-body.mfd-mui.mfd-surface.mfd-on {
+    background-color: var(--mfd-primary);
+    color: var(--mfd-primary-fg);
+}
+
+.mfd-rx.mfd-body.mfd-mui.mfd-hoverable:hover {
+    background-image: linear-gradient(var(--mfd-hover), var(--mfd-hover));
+}
+
+.mfd-rx.mfd-body.mfd-mui.mfd-surface.mfd-hoverable:hover {
+    box-shadow: var(--mfd-shadow-hover);
+}
+
+/* ------------------------------------------------------------------------------------------------ dialog */
+
+.mfd-rx.mfd-dialog {
+    --mfd-bg: #ffffff;
+    --mfd-fg: #1f2328;
+    --mfd-muted: #57606a;
+    --mfd-header-bg: #f3f5f7;
+    --mfd-border: rgba(31, 35, 40, 0.15);
+    --mfd-button-bg: #eef1f4;
+    --mfd-button-hover: #e1e6eb;
+    --mfd-accent: #2f7ccf;
+    --mfd-accent-fg: #ffffff;
+    --mfd-track: #d3d9df;
+    --mfd-shadow: 0 14px 44px rgba(0, 0, 0, 0.28);
+
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: calc(100vw - 16px);
+    max-height: calc(100vh - 16px);
+    overflow: hidden;
+    background: var(--mfd-bg);
+    color: var(--mfd-fg);
+    border: 1px solid var(--mfd-border);
+    border-radius: 10px;
+    box-shadow: var(--mfd-shadow);
+    font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.mfd-rx.mfd-dialog.mfd-dark {
+    --mfd-bg: #1f2329;
+    --mfd-fg: #e3e6ea;
+    --mfd-muted: #9aa4af;
+    --mfd-header-bg: #2a2f37;
+    --mfd-border: rgba(255, 255, 255, 0.12);
+    --mfd-button-bg: #2c323a;
+    --mfd-button-hover: #38404a;
+    --mfd-accent: #4d9be6;
+    --mfd-accent-fg: #0d1117;
+    --mfd-track: #3b434d;
+    --mfd-shadow: 0 14px 44px rgba(0, 0, 0, 0.6);
+}
+
+.mfd-dialog-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.mfd-rx .mfd-dialog-header {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 6px 6px 16px;
+    background: var(--mfd-header-bg);
+    border-bottom: 1px solid var(--mfd-border);
+    cursor: move;
+    user-select: none;
+    touch-action: none;
+}
+
+.mfd-rx .mfd-dialog-header.mfd-dialog-header-hidden {
+    background: transparent;
+    border-bottom-color: transparent;
+}
+
+.mfd-rx .mfd-dialog-title {
+    flex: 1;
+    min-height: 20px;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.mfd-rx .mfd-dialog-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: inherit;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.mfd-rx .mfd-dialog-close:hover {
+    background: var(--mfd-button-hover);
+    opacity: 1;
+}
+
+.mfd-rx .mfd-dialog-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: 16px;
+}
+
+/* ---------------------------------------------------------------------------- content of the value dialogs */
+
+.mfd-rx .mfd-value-dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* one chip per button: stays tidy when many temperatures wrap into a second row */
+.mfd-rx .mfd-buttonset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.mfd-rx .mfd-buttonset-button {
+    flex: 0 0 auto;
+    min-width: 56px;
+    margin: 0;
+    padding: 9px 14px;
+    border: 1px solid var(--mfd-border);
+    border-radius: 6px;
+    background: var(--mfd-button-bg);
+    color: inherit;
+    font: inherit;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.mfd-rx .mfd-buttonset-button:hover {
+    background: var(--mfd-button-hover);
+}
+
+.mfd-rx .mfd-buttonset-button.mfd-checked {
+    border-color: var(--mfd-accent);
+    background: var(--mfd-accent);
+    color: var(--mfd-accent-fg);
+    font-weight: 600;
+}
+
+.mfd-rx .mfd-slider {
+    width: 90%;
+    padding: 12px 11px;
+    box-sizing: border-box;
+    touch-action: none;
+    cursor: pointer;
+}
+
+.mfd-rx .mfd-slider.mfd-disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.mfd-rx .mfd-slider-track {
+    position: relative;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--mfd-track);
+}
+
+.mfd-rx .mfd-slider-range {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 3px;
+    background: var(--mfd-accent);
+}
+
+.mfd-rx .mfd-slider-handle {
+    position: absolute;
+    top: 50%;
+    width: 22px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+    box-sizing: border-box;
+    border: 2px solid var(--mfd-accent);
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    outline: none;
+    transition: transform 0.1s;
+}
+
+.mfd-rx .mfd-slider-handle:focus-visible {
+    box-shadow: 0 0 0 4px rgba(47, 124, 207, 0.35);
+}
+
+.mfd-rx .mfd-slider-handle.mfd-active {
+    transform: scale(1.15);
+}
+
+.mfd-rx .mfd-value-dialog-text {
+    color: var(--mfd-fg);
+    font-size: 15px;
+}
