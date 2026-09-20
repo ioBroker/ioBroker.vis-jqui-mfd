@@ -117,13 +117,15 @@ export const SET_INFO = {
 
 /**
  * The declaration of a widget of the set: adds what every widget shares - the set with its label, icon and colour
- * in the palette, and "vis-2 theme" at the top of the first group.
+ * in the palette, the description under the preview in the palette (`help_<label>` in `i18n/`) and "vis-2 theme" at
+ * the top of the first group.
  */
 export function mfdInfo(info: Omit<RxWidgetInfo, 'visSet'>): RxWidgetInfo {
     const [first, ...rest] = info.visAttrs;
     return {
         visSet: VIS_SET,
         ...SET_INFO,
+        visHelp: info.visWidgetLabel ? `help_${info.visWidgetLabel}` : undefined,
         ...info,
         visAttrs: [{ ...first, fields: [muiField(), ...first.fields] }, ...rest],
     };

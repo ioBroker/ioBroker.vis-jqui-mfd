@@ -151,6 +151,7 @@ for (const name of WIDGETS) {
 
     checkLabel(info.visWidgetLabel);
     checkLabel(info.visSetLabel);
+    checkLabel(info.visHelp);
     for (const group of info.visAttrs) {
         checkLabel(group.label);
         for (const field of group.fields) {

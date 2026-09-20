@@ -72,7 +72,8 @@ widget means touching `vite.config.ts` (`exposes`), that block, the `WIDGETS` li
 
 Every `getWidgetInfo()` returns `mfdInfo({...})` (`Components/fields.ts`). It adds what all widgets share: `visSet`,
 the appearance of the set in the palette of the vis-2 editor (`SET_INFO`: label `set_label`, icon, colour - the
-palette takes them from any widget of the set) and the `mui` checkbox. The set icon is `admin/jqui-mfd.svg`, which
+palette takes them from any widget of the set), the description under the preview in the palette (`visHelp`, the key
+`help_<visWidgetLabel>` in `i18n/`) and the `mui` checkbox. The set icon is `admin/jqui-mfd.svg`, which
 `tasks.js` copies to `widgets/vis-2-widgets-jqui-mfd/img/` after the build.
 
 `moduleFederationShared(pack)` from `@iobroker/types-vis-2` filters the shared modules by the dependencies in

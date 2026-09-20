@@ -56,6 +56,7 @@ are licensed under [CC BY-SA 3.0 DE](http://creativecommons.org/licenses/by-sa/3
 * (@GermanBluefox) The window with rotary handle shows the own icons per state
 * (@GermanBluefox) The adapter icon is an SVG now
 * (@GermanBluefox) The widget set has its own icon, label and color in the widget palette of vis-2
+* (@GermanBluefox) Every widget describes itself in the palette of the vis-2 editor
 
 ### 1.1.3 (2026-01-25)
 * (@GermanBluefox) Allowed installation with vis-2 without installing vis-1
