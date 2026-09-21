@@ -104,6 +104,8 @@ are licensed under [CC BY-SA 3.0 DE](http://creativecommons.org/licenses/by-sa/3
 ### 0.0.1 (2015-09-20)
 * (bluefox) initial checkin
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
  Copyright (c) 2014-2026 hobbyquaker https://github.com/hobbyquaker, bluefox https://github.com/GermanBluefox
  MIT
